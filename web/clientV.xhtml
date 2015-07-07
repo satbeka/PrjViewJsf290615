@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Наименование эмитента info</title>
+</h:head>
+
+<h:body>
+
+    <p:panelGrid columns="2">
+
+        <h:outputText value="Id:" />
+        <h:outputText value="#{dfView.client_id}" />
+
+        <h:outputText value="Юридический адрес:" />
+        <h:outputText value="#{dfView.selectedClient.a1_j_address}" />
+
+        <h:outputText value="ИИН/БИН:" />
+        <h:outputText value="#{dfView.selectedClient.a1_idn}" />
+
+        <h:outputText value="номер регистрации (перерегистрации)" />
+        <h:outputText value="#{dfView.selectedClient.a1_cl_doc_nom}" />
+
+        <h:outputText value="датa регистрации (перерегистрации)" />
+        <h:outputText value="#{dfView.selectedClient.a1_cl_doc_dat}" />
+
+
+
+    </p:panelGrid>
+
+
+
+
+</h:body>
+
+</html>

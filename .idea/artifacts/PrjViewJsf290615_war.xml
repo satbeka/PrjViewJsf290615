@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PrjViewJsf290615:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="tisrlab-1.2.war">
+      <element id="artifact" artifact-name="PrjViewJsf290615:war exploded" />
+    </root>
+  </artifact>
+</component>

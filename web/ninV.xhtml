@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>НИН ценных бумаг</title>
+</h:head>
+
+<h:body>
+
+    <p:panelGrid columns="2">
+
+        <h:outputText value="NIN:" />
+        <h:outputText value="#{dfView.nin}" />
+
+        <h:outputText value="Дата регистрации выпуска ЦБ:" />
+        <h:outputText value="#{dfView.selectedNIN.b1_date_reg_emission}" />
+
+        <h:outputText value="Номер регистрации выпуска ЦБ:" />
+        <h:outputText value="#{dfView.selectedNIN.b1_num_emission}" />
+
+        <h:outputText value="Количество объявленных ценных бумаг" />
+        <h:outputText value="#{dfView.selectedNIN.volofdeclaredsecurities}" />
+
+        <h:outputText value="Количество размещенных ценных бумаг" />
+        <h:outputText value="#{dfView.selectedNIN.volofplacedsecurities}" />
+
+        <h:outputText value="Срок обращения облигаций (для облигаций)" />
+        <h:outputText value="#{dfView.selectedNIN.srok}" />
+
+
+    </p:panelGrid>
+
+
+
+
+</h:body>
+
+</html>
