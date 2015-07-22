@@ -3,12 +3,6 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="tisrlab-1.2.war">
       <element id="artifact" artifact-name="PrjViewJsf290615:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="Mojarra-2.2.1" />
-          <element id="library" level="project" name="PrimeFaces-5.2" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>
