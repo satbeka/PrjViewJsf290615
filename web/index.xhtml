@@ -9,57 +9,97 @@
 
 <h:head>
     <title>АО «Единый регистратор ценных бумаг»</title>
+    <link rel="shortcut icon" href="#{resource['default/img/favicon.ico']}" type="image/x-icon" />
 
     <script type="text/javascript">
         <!--
         function showImage(){
 
             document.getElementById('gif1').style.visibility='visible';
+            document.getElementById('inf_not').style.visibility='hidden';
         }
         function hideImage(){
 
             document.getElementById('gif1').style.visibility='hidden';
+            document.getElementById('inf_not').style.visibility='visible';
         }
         -->
 
     </script>
+
+    <script type="text/javascript">
+        PrimeFaces.locales ['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Назад',
+            nextText: 'Вперёд',
+            monthNames: ['Январь', 'Февраль' , 'Март' , 'Апрель' , 'Май' , 'Июнь' , 'Июль' , 'Август' , 'Сентябрь','Октябрь','Ноябрь','Декабрь' ],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],
+            dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Субота'],
+            dayNamesShort: ['Воск','Пон' , 'Вт' , 'Ср' , 'Четв' , 'Пят' , 'Суб'],
+            dayNamesMin: ['В', 'П', 'Вт', 'С ', 'Ч', 'П ', 'Сб'],
+            weekHeader: 'Неделя',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix:'',
+            timeOnlyTitle: 'Только время',
+            timeText: 'Время',
+            hourText: 'Час',
+            minuteText: 'Минута',
+            secondText: 'Секунда',
+            currentText: 'Сегодня',
+            ampm: false,
+            month: 'Месяц',
+            week: 'неделя',
+            day: 'День',
+            allDayText: 'Весь день'
+        };
+    </script>
+
+
 </h:head>
 <h:body>
+
+
     <f:facet name="last">
         <h:outputStylesheet library="default" name="css/index.css" />
     </f:facet>
 
+
+    <h:panelGrid>
+    <div class="headertisr">
+        <div class="logotisr"></div>
+
+        <div class="line1tisr"></div>
+
+    </div>
+
+    </h:panelGrid>
+
+
     <h:form>
+
         <p:growl id="msgs" showDetail="true" />
 
 
 
             <h:panelGrid columns="2" cellpadding="10" styleClass="indHeadTitle" >
-                <p:graphicImage library="default" name="img/logo.png" />
-                <h:outputText value="Информационная площадка по внебиржевым сделкам по ЦБ #{userData.date}">
-
+                <h:outputText value="Информационная площадка по внебиржевым сделкам по ЦБ ">
                 </h:outputText>
 
-
             </h:panelGrid>
-
-        <div id="line1" class="line1"></div>
-
 
 
         <h:panelGrid id="grid" styleClass="indBodyTitle">
 
             <h:panelGrid columns="2" cellpadding="5" >
-                <p:outputLabel for="button" value=" По состоянию с: " />
-                <p:calendar id="button" value="#{calendarView.date1}" showOn="button" />
-                <p:outputLabel for="button" value="  по: " />
-                <p:calendar id="button2" value="#{calendarView.date2}" showOn="button" />
-
+                <p:outputLabel for="button" value=" По состоянию на: " />
+                <p:calendar locale="ru" id="button" value="#{calendarView.date1}" showOn="button" />
 
 
 
                 <p:commandButton id="submitButton" value="Получить информацию " update="@form"
-                                 action="#{userData.upd(calendarView.date1,calendarView.date2)}"
+                                 action="#{userData.upd(calendarView.date1)}"
                                  onclick="showImage()" oncomplete="hideImage()"
                         />
 
@@ -68,7 +108,7 @@
             </h:panelGrid>
         </h:panelGrid>
 
-        <div id="gif1" style="visibility:hidden"><p:graphicImage library="default" name="img/americascup-24fps.gif" /></div>
+        <div id="gif1" style="visibility:hidden"><p:graphicImage library="default" name="img/mailbox_new.gif" /></div>
 
 
 
@@ -83,71 +123,90 @@
                 </p:panelGrid>
             </p:dialog>
 
+        <div id="inf_not" style="#{userData.display_inf_not}" >
+            <h:outputText value="ИНФОРМАЦИЯ НА УКАЗАННУЮ ДАТУ ОТСУТСТВУЕТ " styleClass="indInfNotTitle">
+            </h:outputText>
+
+        </div>
+
+        <div id="inf_cnt" style="#{userData.display_inf_cnt}">
+             <h:outputText value="выбрано #{userData.tisr_non_markets.size()} записей" styleClass="indInfNotTitle">
+             </h:outputText>
+        </div>
+
 
 
             <p:dataTable id="tbl" value="#{userData.tisr_non_markets}" var="tisr_non_market"
-                         paginator="true" rows="10" rowsPerPageTemplate="20,50,100" style="#{userData.display}" >
+                         paginator="true" rows="20" rowsPerPageTemplate="20,50,100" style="#{userData.display}" styleClass="indPag" >
 
 
-                <p:column headerText="№ п. п." styleClass="indTblHead">
-                    <h:outputText value="#{tisr_non_market.rn}" styleClass="indTblBody"/>
-                </p:column>
 
 
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.order_date}">
                     <f:facet name="header">
-                        <h:outputText value="Время сделки" styleClass="indTblHead"/>
+                        <h:outputText value="Дата и время сделки" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.order_date}" styleClass="indTblBody"/>
                 </p:column>
 
 
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="order_n" styleClass="indTblHead"/>
-                    </f:facet>
-                    <h:outputText value="#{tisr_non_market.order_n}" styleClass="indTblBody" />
-                </p:column>
 
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.p3_emitent_name_str}" filterBy="#{tisr_non_market.p3_emitent_name_str}"
+                          filterMatchMode="startsWith"  styleClass="indTblBodyEmit">
                     <f:facet name="header">
                         <h:outputText value="Наименование эмитента" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_emitent_name_str}" styleClass="indTblBody"/>
+
+                    <h:outputText value="#{tisr_non_market.p3_emitent_name_str}" styleClass="indTblBody"> </h:outputText>
+                    <p:commandLink title="View Detail" id="clnCard"
+                                   actionListener="#{dfView.viewClientsCustomized(tisr_non_market.client_id)}" >
+                        <h:outputText styleClass="ui-icon image-button" style="margin:0 auto;" />
+                    </p:commandLink>
+
+
+
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="client_id" styleClass="indTblHead"/>
+                        <h:outputText value=" БИН эмитента" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.client_id}" styleClass="indTblBody"/>
+                    <h:outputText styleClass="indTblBodyEmit" value="#{tisr_non_market.bin}" />
                 </p:column>
 
-                <p:column>
-                <p:commandButton value="Клиент"
-                                 styleClass="indTBLBtn"
-                                 icon="ui-icon-myextlink" actionListener="#{dfView.viewClientsCustomized(tisr_non_market.client_id)}" />
-                </p:column>
-
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.s18_name}" filterBy="#{tisr_non_market.s18_name}"
+                          filterMatchMode="startsWith">
                     <f:facet name="header">
                         <h:outputText value="Вид ценных бумаг" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.s18_name}" styleClass="indTblBody"/>
                 </p:column>
 
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.p3_nsin}" filterBy="#{tisr_non_market.p3_nsin}"
+                          filterMatchMode="startsWith">
                     <f:facet name="header">
                         <h:outputText value="НИН ценных бумаг" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_nsin}" styleClass="indTblBody"/>
+                    <h:outputText value="#{tisr_non_market.p3_nsin}" styleClass="indTblBody"> </h:outputText>
+                    <f:param name="nin_id" value="#{tisr_non_market.p3_nsin}" />
+
+
+
+
+                    <p:commandLink title="View Detail" id="btnNin"
+                 actionListener="#{dfView.viewNINCustomized(tisr_non_market.p3_nsin)}" >
+                        <h:outputText styleClass="ui-icon image-button" style="margin:0 auto;" />
+                    </p:commandLink>
+
+
+
+
                 </p:column>
-                <p:column>
-                    <p:commandButton value="ЦБ"
-                                     styleClass="indTBLBtn"
-                                     icon="ui-icon-myextlink" actionListener="#{dfView.viewNINCustomized(tisr_non_market.p3_nsin)}" />
-                </p:column>
-                <p:column>
+
+
+
+                <p:column sortBy="#{tisr_non_market.prod_code}"  filterBy="#{tisr_non_market.prod_code}"
+                          filterMatchMode="startsWith">
                     <f:facet name="header">
                         <h:outputText value="Код продавца" styleClass="indTblHead"/>
                     </f:facet>
@@ -156,48 +215,43 @@
 
 
 
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.pokup_code}" filterBy="#{tisr_non_market.pokup_code}"
+                          filterMatchMode="startsWith">
                     <f:facet name="header">
                         <h:outputText value="Код покупателя" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.pokup_code}" styleClass="indTblBody"/>
                 </p:column>
 
-                <p:column>
+                <p:column sortBy="#{tisr_non_market.p3_volume}" styleClass="indTblBodyNum">
                     <f:facet name="header">
                         <h:outputText value="Количество ценных бумаг, шт." styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_volume}" styleClass="indTblBody">
+                    <h:outputText value="#{tisr_non_market.p3_volume}" styleClass="indTblBodyNum">
 
                     </h:outputText>
                 </p:column>
 
-                <>
+                <p:column sortBy="#{tisr_non_market.p3_price}" styleClass="indTblBodyNum">
+                    <f:facet name="header">
+                        <h:outputText value="Стоимость за одну ценную бумагу в сделке, тенге" styleClass="indTblHead"/>
+                    </f:facet>
+                    <h:outputText value="#{tisr_non_market.p3_price}" styleClass="indTblBodyNum"/>
+                </p:column>
+
+                <p:column sortBy="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum">
                     <f:facet name="header">
                         <h:outputText value="Объем сделок, тенге" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBody">
-
-                    </h:outputText>>
+                    <h:outputText value="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum"/>
                 </p:column>
 
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Цена ценной бумаги в сделке, тенге" styleClass="indTblHead"/>
-                    </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_price}" styleClass="indTblBody"/>
-                </p:column>
+
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Источник сведений" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="Единый регистратор" styleClass="indTblBody"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="P3_PRICE" styleClass="indTblHead"/>
-                    </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_price}" styleClass="indTblBody"/>
                 </p:column>
 
             </p:dataTable>

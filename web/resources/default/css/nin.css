@@ -112,19 +112,18 @@ line-height: 18px;
 
 
 .ui-widget-content {
-    text-align: center;
+    text-align: left;
 }
 
-.ui-widget .ui-widget {
+.ui-widget {
     font-size: 13px;
     font-family: Times New Roman,sans-serif!important;
-    color: rgb(2, 126, 197);
+    height: 300px!important;
+    width: 300px!important;
+    resize: both!important;
+    overflow: auto!important;
 }
 
-.indPag {
-    font-size: 13px!important;
-    font-family: Times New Roman,sans-serif!important;
-}
 .indNin {
     text-align: left!important;
     font-family: Times New Roman,sans-serif!important;
@@ -211,6 +210,19 @@ line-height: 18px;
     float: left;
     top: 0px;
 }
+.resizableI {
+    height: 300px!important;
+    width: 300px!important;
+    resize: both!important;
+    overflow: auto!important;
+}
+
+/*.ui-dialog {
+    height: 300px!important;
+    width: 300px!important;
+    resize: both!important;
+    overflow: auto!important;
+}*/
 
 .ui-dialog .ui-widget .ui-widget-content .ui-corner-all .ui-shadow .ui-hidden-container .ui-overlay-visible{
     height: 300px!important;
@@ -219,4 +231,3 @@ line-height: 18px;
     overflow: auto!important;
 }
 
-.someCustomClass .ui-datagrid-column {width: 33.33%;}

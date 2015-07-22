@@ -2,32 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
-
+<f:metadata>
+    <f:viewParam name="nin_id" value="#{dfView.nin}" />
+</f:metadata>
 <h:head>
     <title>НИН ценных бумаг</title>
 </h:head>
 
 <h:body>
-
+    <f:facet name="last">
+        <h:outputStylesheet library="default" name="css/nin.css" />
+    </f:facet>
+    <li value="#{dfView.viewNINCustomized(dfView.nin)}"></li>
     <p:panelGrid columns="2">
 
-        <h:outputText value="NIN:" />
-        <h:outputText value="#{dfView.nin}" />
+        <h:outputText value="NIN:" styleClass="indNin"/>
+        <h:outputText value="#{dfView.nin}" styleClass="indNin"/>
 
-        <h:outputText value="Дата регистрации выпуска ЦБ:" />
-        <h:outputText value="#{dfView.selectedNIN.b1_date_reg_emission}" />
+        <h:outputText value="Дата регистрации выпуска ЦБ:" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.b1_date_reg_emission}" styleClass="indNin"/>
 
-        <h:outputText value="Номер регистрации выпуска ЦБ:" />
-        <h:outputText value="#{dfView.selectedNIN.b1_num_emission}" />
+        <h:outputText value="Номер регистрации выпуска ЦБ:" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.b1_num_emission}" styleClass="indNin"/>
 
-        <h:outputText value="Количество объявленных ценных бумаг" />
-        <h:outputText value="#{dfView.selectedNIN.volofdeclaredsecurities}" />
+        <h:outputText value="Количество объявленных ценных бумаг" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.volofdeclaredsecurities}" styleClass="indNin"/>
 
-        <h:outputText value="Количество размещенных ценных бумаг" />
-        <h:outputText value="#{dfView.selectedNIN.volofplacedsecurities}" />
+        <h:outputText value="Количество размещенных ценных бумаг" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.volofplacedsecurities}" styleClass="indNin"/>
 
-        <h:outputText value="Срок обращения облигаций (для облигаций)" />
-        <h:outputText value="#{dfView.selectedNIN.srok}" />
+        <h:outputText value="Срок обращения облигаций (для облигаций)" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.srok}" styleClass="indNin"/>
 
 
     </p:panelGrid>

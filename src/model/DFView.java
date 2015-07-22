@@ -115,7 +115,7 @@ public class DFView {
         }
 
 
-        System.out.println(this.selectedClient);
+        //System.out.println(this.selectedClient);
         RequestContext.getCurrentInstance().openDialog("clientV", options, null);
     }
 
@@ -164,8 +164,11 @@ public class DFView {
                 NIN nin=new NIN();
                 nin.setB1_date_reg_emission(rs.getDate(1));
                 nin.setB1_num_emission(rs.getString(2));
-                nin.setVolofplacedsecurities(rs.getString(3));
-                nin.setVolofdeclaredsecurities(rs.getString(4));
+                Integer nmb;
+                nmb=rs.getInt(3);
+                nin.setVolofplacedsecurities(UserData.getFrmtNumb(nmb));
+                nmb=rs.getInt(4);
+                nin.setVolofdeclaredsecurities(UserData.getFrmtNumb(nmb));
                 nin.setSrok(rs.getString(5));
                 System.out.println("rs.getString(6)="+rs.getString(6));
                 if (!rs.getString(6).contains("03"))

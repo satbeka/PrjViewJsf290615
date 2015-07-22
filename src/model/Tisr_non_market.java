@@ -6,6 +6,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class Tisr_non_market {
 
@@ -16,6 +17,16 @@ public class Tisr_non_market {
     public String getRn() {
         return rn;
     }
+
+    public String getBin() {
+        return bin;
+    }
+
+    public void setBin(String bin) {
+        this.bin = bin;
+    }
+
+    public String bin;
 
     public void setRn(String rn) {
         this.rn = rn;
@@ -28,10 +39,23 @@ public class Tisr_non_market {
     public void setOrder_date(String order_date) {
         this.order_date = order_date;
     }
+
+
     public void setOrder_date(Date order_date) {
         if (order_date==null){this.order_date=null;return;}
-        SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
-        this.order_date = dt1.format(order_date);
+        SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+        String yyyy=dt1.format(order_date).substring(6,10);
+        String mm=dt1.format(order_date).substring(3,5);
+        String dd=dt1.format(order_date).substring(0,2);
+        String hh=dt1.format(order_date).substring(11,13);
+        String mi=dt1.format(order_date).substring(14,16);
+        String sec=dt1.format(order_date).substring(17,19);
+
+
+      //System.out.println(yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec);
+
+        this.order_date = yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec;
             }
 
     public String getOrder_n() {
