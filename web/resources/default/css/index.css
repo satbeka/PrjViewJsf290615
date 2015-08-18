@@ -128,6 +128,7 @@ line-height: 18px;
 .indNin {
     text-align: left!important;
     font-family: Times New Roman,sans-serif!important;
+    font-size: 13px!important;
 }
 .indTblBody {
 
@@ -212,11 +213,103 @@ line-height: 18px;
     top: 0px;
 }
 
-.ui-dialog .ui-widget .ui-widget-content .ui-corner-all .ui-shadow .ui-hidden-container .ui-overlay-visible{
-    height: 300px!important;
-    width: 300px!important;
+
+.someCustomClass {width: 33.33%;}
+
+.forty-percent {
+    width: 40%;
+}
+
+.ui-dialog {
+    height: 200px!important;
+    width: 340px!important;
+    /*resize: both!important;*/
+    overflow: auto!important;
+    /*position: relative!important; ;*/
+    top: 20px!important;
+    left: 900px!important;
+    resize: both!important;
+
+}
+
+.ui-dialog-title {
+    text-align: center!important;
+
+    height: 15px!important;
+    width: 320px!important;
+
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 15px!important;
+}
+
+
+.ui-dialog-titlebar {
+    padding: 1px 1px!important;
+    position: relative;
+    border: 0px none!important;
+    height: 10px!important;
+    width: 10px!important;
+    text-align: left!important;
+    background-color:white!important;
+
+}
+
+.ui-dialog-titlebar-close {
+    position: relative!important;
+    top: 1px!important;
+    left: 310px!important;
+    cursor: auto!important;
+}
+
+.resizableI {
+    width: 310px!important;
     resize: both!important;
     overflow: auto!important;
 }
 
-.someCustomClass .ui-datagrid-column {width: 33.33%;}
+.clock {
+    overflow: hidden;
+    position: absolute!important;
+    top: 180px!important;
+    left: 490px!important;
+    zoom: 0.71!important;
+    -moz-transform: scale(0.30)!important;
+    -moz-transform-origin: 0 0!important;
+    -o-transform: scale(0.30)!important;
+    -o-transform-origin: 0 0!important;
+    -webkit-transform: scale(0.30)!important;
+    -webkit-transform-origin: 0 0!important;
+    width: 610px!important;
+    height: 610px!important;
+
+}
+
+.ui-datepicker{
+    left: 415.2px!important;
+    top: 180px!important;
+}
+
+.ui-datepicker-month{
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 15px!important;
+}
+
+.ui-datepicker-year{
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 15px!important;
+}
+
+.ui-slider .ui-slider-handle {
+    position: absolute!important;
+    z-index: 2!important;
+    width: 1.2em!important;
+    height: 1.2em!important;
+    cursor: default!important;
+    background: -moz-linear-gradient(rgba(81, 255, 64, 0.8), rgba(255, 255, 255, 0))
+    repeat scroll 0% 0% rgb(133, 178, 203)!important;
+}
+.ui-timepicker-div{
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 15px!important;
+
+}

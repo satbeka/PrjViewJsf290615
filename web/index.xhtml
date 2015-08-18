@@ -57,6 +57,8 @@
     </script>
 
 
+
+
 </h:head>
 <h:body>
 
@@ -93,13 +95,23 @@
         <h:panelGrid id="grid" styleClass="indBodyTitle">
 
             <h:panelGrid columns="2" cellpadding="5" >
-                <p:outputLabel for="button" value=" По состоянию на: " />
-                <p:calendar locale="ru" id="button" value="#{calendarView.date1}" showOn="button" />
+                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " />
+                <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
+                            showOn="button"
+                            navigator="true"
+                            pattern="dd/MM/yyyy"
+
+                            />
+
+
+
+
+
 
 
 
                 <p:commandButton id="submitButton" value="Получить информацию " update="@form"
-                                 action="#{userData.upd(calendarView.date1)}"
+                                 action="#{userData.upd(calendarView.date10)}"
                                  onclick="showImage()" oncomplete="hideImage()"
                         />
 
@@ -208,7 +220,7 @@
                 <p:column sortBy="#{tisr_non_market.prod_code}"  filterBy="#{tisr_non_market.prod_code}"
                           filterMatchMode="startsWith">
                     <f:facet name="header">
-                        <h:outputText value="Код продавца" styleClass="indTblHead"/>
+                        <h:outputText value="Продавец" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.prod_code}" styleClass="indTblBody"/>
                 </p:column>
@@ -218,7 +230,7 @@
                 <p:column sortBy="#{tisr_non_market.pokup_code}" filterBy="#{tisr_non_market.pokup_code}"
                           filterMatchMode="startsWith">
                     <f:facet name="header">
-                        <h:outputText value="Код покупателя" styleClass="indTblHead"/>
+                        <h:outputText value="Покупатель" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.pokup_code}" styleClass="indTblBody"/>
                 </p:column>
@@ -241,7 +253,7 @@
 
                 <p:column sortBy="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum">
                     <f:facet name="header">
-                        <h:outputText value="Объем сделок, тенге" styleClass="indTblHead"/>
+                        <h:outputText value="Объем сделки, тенге" styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum"/>
                 </p:column>
