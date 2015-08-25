@@ -7,6 +7,12 @@
     <title>Наименование эмитента</title>
 </h:head>
 
+<f:metadata>
+    <f:viewParam name="client_id" value="#{dfView.client_id}" />
+</f:metadata>
+
+<h:inputHidden value="#{dfView.viewClientsCustomized(dfView.client_id)}"/>
+
 <h:body style="width: 300px; height: 320px;">
 
     <f:facet name="last">

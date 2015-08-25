@@ -66,11 +66,22 @@ public class UserData implements Serializable {
 
     private String display_inf_od=" на последний ОД ";
 
+    public String getDisplay_inf_last_od() {
+        return display_inf_last_od;
+    }
+
+    public void setDisplay_inf_last_od(String display_inf_last_od) {
+        this.display_inf_last_od = display_inf_last_od;
+    }
+
+    private String display_inf_last_od=" на последний ОД ";
+
     @PostConstruct
     public void init() {
         System.out.println("init=");
         //this.tisr_non_markets = new ArrayList<Tisr_non_market>();
         LastInfOD lastInfOD =getLastInfOD();
+
         this.tisr_non_markets = getView(lastInfOD.getOd());
         System.out.println(" init dt1 this.tisr_non_markets.size()="+this.tisr_non_markets.size());
         if (this.tisr_non_markets.size()!=0
@@ -86,7 +97,11 @@ public class UserData implements Serializable {
             this.display_inf_od = " на последний завершенный ОД ";
         }
 
+        this.display_inf_last_od=this.display_inf_od+" - "+lastInfOD.getOd().toString();
+        this.display_inf_od = " на ОД ";
+
         System.out.println("init  dt1 this.display_inf_od="+this.display_inf_od);
+
         //ApplicationThread.init();
 
 

@@ -133,10 +133,17 @@ line-height: 18px;
 .indTblBody {
 
     font-family: Times New Roman,sans-serif!important;
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 13px!important;
+    line-height: 18px!important;
 
 
+}
+
+.indLastOD {
+
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 15px!important;
+    line-height: 18px!important;
 }
 
 .indTblBodyNum{
@@ -311,5 +318,31 @@ line-height: 18px;
 .ui-timepicker-div{
     font-family: Times New Roman,sans-serif!important;
     font-size: 15px!important;
+
+}
+
+.indOD
+{
+
+
+    font-weight: bold!important;
+    text-align: justify!important;
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px!important;
+
+
+}
+
+.indFrmOD
+{
+
+
+    font-weight: bold!important;
+    text-align: justify!important;
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px!important;
+    allowtransparency:true!important;
+    background:transparent!important;
+
 
 }

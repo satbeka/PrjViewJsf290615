@@ -13,6 +13,9 @@
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.2" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.2" />
+          <element id="library" level="project" name="Mojarra-2.2.1" />
+          <element id="library" level="project" name="PrimeFaces-5.2" />
+          <element id="library" level="module" name="Maven: com.oracle:ojdbc:14" module-name="PrjViewJsf290615" />
         </element>
       </element>
       <element id="directory" name="META-INF">

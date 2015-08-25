@@ -92,9 +92,16 @@
             </h:panelGrid>
 
 
-        <h:panelGrid id="grid" styleClass="indBodyTitle">
 
-            <h:panelGrid columns="2" cellpadding="5" >
+
+
+        <h:panelGrid id="grid" columns="2" styleClass="indTwoFrame">
+
+            <h:outputText value=" По состоянию #{userData.display_inf_last_od} в СВР" styleClass="indLastOD"/>
+
+
+            <h:panelGrid columns="2" cellpadding="5" styleClass="indBodyTitle">
+
                 <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " />
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
                             showOn="button"
@@ -105,20 +112,17 @@
 
 
 
-
-
-
-
-
                 <p:commandButton id="submitButton" value="Получить информацию " update="@form"
                                  action="#{userData.upd(calendarView.date10)}"
                                  onclick="showImage()" oncomplete="hideImage()"
                         />
 
 
-
             </h:panelGrid>
+
         </h:panelGrid>
+
+
 
         <div id="gif1" style="visibility:hidden"><p:graphicImage library="default" name="img/mailbox_new.gif" /></div>
 
@@ -164,16 +168,17 @@
 
 
                 <p:column sortBy="#{tisr_non_market.p3_emitent_name_str}" filterBy="#{tisr_non_market.p3_emitent_name_str}"
-                          filterMatchMode="startsWith"  styleClass="indTblBodyEmit">
+                          filterMatchMode="contains"  styleClass="indTblBodyEmit">
                     <f:facet name="header">
                         <h:outputText value="Наименование эмитента" styleClass="indTblHead"/>
                     </f:facet>
 
-                    <h:outputText value="#{tisr_non_market.p3_emitent_name_str}" styleClass="indTblBody"> </h:outputText>
-                    <p:commandLink title="View Detail" id="clnCard"
-                                   actionListener="#{dfView.viewClientsCustomized(tisr_non_market.client_id)}" >
-                        <h:outputText styleClass="ui-icon image-button" style="margin:0 auto;" />
-                    </p:commandLink>
+
+
+                    <p:link target="_blank" title="View Detail" id="clnCard2"
+                            outcome="clientV" value="#{tisr_non_market.p3_emitent_name_str}">
+                        <f:param name="client_id" value="#{tisr_non_market.client_id}" />
+                    </p:link>
 
 
 
@@ -195,22 +200,16 @@
                 </p:column>
 
                 <p:column sortBy="#{tisr_non_market.p3_nsin}" filterBy="#{tisr_non_market.p3_nsin}"
-                          filterMatchMode="startsWith">
+                          filterMatchMode="contains">
                     <f:facet name="header">
                         <h:outputText value="НИН ценных бумаг" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_nsin}" styleClass="indTblBody"> </h:outputText>
-                    <f:param name="nin_id" value="#{tisr_non_market.p3_nsin}" />
 
 
-
-
-                    <p:commandLink title="View Detail" id="btnNin"
-                 actionListener="#{dfView.viewNINCustomized(tisr_non_market.p3_nsin)}" >
-                        <h:outputText styleClass="ui-icon image-button" style="margin:0 auto;" />
-                    </p:commandLink>
-
-
+                    <p:link target="_blank" title="View Detail" id="btnNin2"
+                            outcome="ninV" value="#{tisr_non_market.p3_nsin}">
+                        <f:param name="nin_id" value="#{tisr_non_market.p3_nsin}" />
+                    </p:link>
 
 
                 </p:column>
@@ -263,7 +262,7 @@
                     <f:facet name="header">
                         <h:outputText value="Источник сведений" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="Единый регистратор" styleClass="indTblBody"/>
+                    <h:outputText value="Учетная система" styleClass="indTblBody"/>
                 </p:column>
 
             </p:dataTable>
