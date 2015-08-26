@@ -103,7 +103,7 @@
                     />
 
 
-            <h:panelGrid columns="2" cellpadding="5" styleClass="indBodyTitle">
+            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitle">
 
                 <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " />
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
@@ -163,7 +163,7 @@
                 <f:facet name="{Exporters}">
                     <h:commandLink>
                         <p:graphicImage library="default" name="img/xls.png"/>
-                        <p:dataExporter type="xls" target="tbl" fileName="report222" pageOnly="true"/>
+                        <p:dataExporter type="xls" target="tbl" fileName="exportXLS" pageOnly="true"/>
                     </h:commandLink>
                 </f:facet>
 
