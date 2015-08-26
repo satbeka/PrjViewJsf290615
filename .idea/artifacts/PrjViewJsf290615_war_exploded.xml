@@ -13,13 +13,15 @@
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.2" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.2" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.2" />
-          <element id="library" level="project" name="Mojarra-2.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.10.1" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.5" />
           <element id="library" level="project" name="PrimeFaces-5.2" />
+          <element id="library" level="project" name="Mojarra-2.2.1" />
           <element id="library" level="module" name="Maven: com.oracle:ojdbc:14" module-name="PrjViewJsf290615" />
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/tisrlab-1.2/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="PrjViewJsf290615/web/Web" />
     </root>

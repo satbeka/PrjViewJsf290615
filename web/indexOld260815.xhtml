@@ -155,17 +155,9 @@
 
 
             <p:dataTable id="tbl" value="#{userData.tisr_non_markets}" var="tisr_non_market"
-                         style="#{userData.display}" styleClass="indPag"
-                         paginatorTemplate="{Exporters}"
-                         paginator="true">
+                         paginator="true" rows="20" rowsPerPageTemplate="20,50,100" style="#{userData.display}" styleClass="indPag" >
 
 
-                <f:facet name="{Exporters}">
-                    <h:commandLink>
-                        <p:graphicImage library="default" name="img/xls.png"/>
-                        <p:dataExporter type="xls" target="tbl" fileName="report222" pageOnly="true"/>
-                    </h:commandLink>
-                </f:facet>
 
 
                 <p:column sortBy="#{tisr_non_market.order_date}">

@@ -217,6 +217,10 @@ line-height: 18px;
     position: relative!important;
 }
 
+.ui-paginator {
+    text-align: left!important;
+}
+
 .line1tisr {
     width: 100%;
     height: 6px;
