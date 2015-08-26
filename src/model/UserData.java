@@ -40,6 +40,16 @@ public class UserData implements Serializable {
 
     private String display_inf_not="display:none";
 
+    public String getDisplay_inf_not2() {
+        return display_inf_not2;
+    }
+
+    public void setDisplay_inf_not2(String display_inf_not2) {
+        this.display_inf_not2 = display_inf_not2;
+    }
+
+    private String display_inf_not2="";
+
     public String getDisplay_inf_cnt() {
         return display_inf_cnt;
     }
@@ -97,7 +107,10 @@ public class UserData implements Serializable {
             this.display_inf_od = " на последний завершенный ОД ";
         }
 
-        this.display_inf_last_od=this.display_inf_od+" - "+lastInfOD.getOd().toString();
+
+        this.display_inf_last_od=this.display_inf_od+" ("+lastInfOD.getOd().toString()+")";
+        this.display_inf_last_od=" По состоянию "+this.display_inf_last_od+" в СВР";
+
         this.display_inf_od = " на ОД ";
 
         System.out.println("init  dt1 this.display_inf_od="+this.display_inf_od);
@@ -124,6 +137,9 @@ public class UserData implements Serializable {
         if (this.tisr_non_markets.size()!=0
                 ){this.display="";this.display_inf_not="display:none";this.display_inf_cnt="";}
         else {this.display="display:none";this.display_inf_not="";this.display_inf_cnt="display:none";};
+
+        //this.display_inf_not2="display:none";
+        this.display_inf_last_od="                                ";
 
         System.out.println(" dt1 this.display="+this.display);
         System.out.println(" dt1 this.display_inf_not="+this.display_inf_not);

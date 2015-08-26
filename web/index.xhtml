@@ -95,9 +95,12 @@
 
 
 
-        <h:panelGrid id="grid" columns="2" styleClass="indTwoFrame">
+        <h:panelGrid id="grid" columns="2" cellspacing="20" border="0" styleClass="indTwoFrame">
 
-            <h:outputText value=" По состоянию #{userData.display_inf_last_od} в СВР" styleClass="indLastOD"/>
+            <h:outputText value=" #{userData.display_inf_last_od}"
+                          styleClass="indLastOD"
+                          style="#{userData.display_inf_not2}"
+                    />
 
 
             <h:panelGrid columns="2" cellpadding="5" styleClass="indBodyTitle">
@@ -107,7 +110,6 @@
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
-
                             />
 
 
