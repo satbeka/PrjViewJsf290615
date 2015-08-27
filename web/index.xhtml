@@ -105,7 +105,7 @@
 
             <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitle">
 
-                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " />
+                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " styleClass="indLabOD"/>
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
                             showOn="button"
                             navigator="true"
@@ -117,6 +117,7 @@
                 <p:commandButton id="submitButton" value="Получить информацию " update="@form"
                                  action="#{userData.upd(calendarView.date10)}"
                                  onclick="showImage()" oncomplete="hideImage()"
+                                 styleClass="indButnOD"
                         />
 
 

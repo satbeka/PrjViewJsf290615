@@ -144,6 +144,14 @@ line-height: 18px;
     font-family: Times New Roman,sans-serif!important;
     font-size: 15px!important;
     line-height: 18px!important;
+
+
+    position: relative!important;
+    bottom: 22px!important; /* Положение от нижнего края */
+    right: 20px!important; /* Положение от правого края */
+    /*left: 15px!important;*/
+    float: right!important;
+
 }
 
 .indTblBodyNum{
@@ -209,6 +217,23 @@ line-height: 18px;
     background: url("#{resource['default/img/man2.jpg']}") no-repeat scroll right center transparent;
     position: relative;
     float: right;
+}
+
+.indLabOD {
+    /*width: 150px!important;*/
+
+    position: relative!important;
+    float: right!important;
+}
+
+.indButnOD {
+    width: 190px!important;
+    position: relative!important;
+
+    bottom: 1px; /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 200px;
+    float: right!important;
 }
 
 .indTwoFrame {
