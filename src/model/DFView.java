@@ -1,15 +1,17 @@
 package model;
 
+import common.OracleDB;
+import common.PropertiesBuilder;
 import org.primefaces.context.RequestContext;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
 @ManagedBean(name = "dfView")
-@ApplicationScoped
+@SessionScoped
 public class DFView {
 
 
@@ -59,13 +61,18 @@ public class DFView {
                 " from D_A1_CLIENTS t where t.a1_id="+client_id;
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
+
         try {
             DriverManager.registerDriver(myDriver);
 
-        String URL = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
-        String USER = "ercb";
-        String PASS = "ercb";
-        Connection conn = DriverManager.getConnection(URL, USER, PASS);
+        //String SYSTEM_DB = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
+
+
+        Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
         PreparedStatement pS=conn.prepareStatement(Sqlsel);
             //pS.executeUpdate();
@@ -146,13 +153,15 @@ public class DFView {
                 " from D_B1_ASSETS t where t.b1_nin='"+p3_nsin+"'";
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
+
         try {
             DriverManager.registerDriver(myDriver);
 
-            String URL = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
-            String USER = "ercb";
-            String PASS = "ercb";
-            Connection conn = DriverManager.getConnection(URL, USER, PASS);
+            Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
             PreparedStatement pS=conn.prepareStatement(Sqlsel);
             //pS.executeUpdate();

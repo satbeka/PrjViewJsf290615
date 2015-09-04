@@ -1,10 +1,12 @@
 package model;
 
+import common.OracleDB;
 import server.ApplicationThread;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -15,7 +17,7 @@ import java.util.*;
 import java.util.Date;
 
 @ManagedBean(name = "userData", eager = true)
-@ApplicationScoped
+@SessionScoped
 public class UserData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -328,13 +330,14 @@ public class UserData implements Serializable {
         System.out.println("SqlView getLastInfOD="+SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
         try {
             DriverManager.registerDriver(myDriver);
 
-            String URL = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
-            String USER = "ercb";
-            String PASS = "ercb";
-            Connection conn = DriverManager.getConnection(URL, USER, PASS);
+            Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
             PreparedStatement pS=conn.prepareStatement(SqlView);
             //pS.executeUpdate();
@@ -387,13 +390,14 @@ public class UserData implements Serializable {
         System.out.println("SqlView OD="+SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
         try {
             DriverManager.registerDriver(myDriver);
 
-            String URL = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
-            String USER = "ercb";
-            String PASS = "ercb";
-            Connection conn = DriverManager.getConnection(URL, USER, PASS);
+            Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
             PreparedStatement pS=conn.prepareStatement(SqlView);
             //pS.executeUpdate();
@@ -427,8 +431,6 @@ public class UserData implements Serializable {
         return rez;
 
     }
-
-
 
 
 
@@ -475,13 +477,15 @@ public class UserData implements Serializable {
         System.out.println("SqlView="+SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
         try {
             DriverManager.registerDriver(myDriver);
 
-            String URL = "jdbc:oracle:thin:@ala-srv-db-tst1.tisr.kz:1521:Test01";
-            String USER = "ercb";
-            String PASS = "ercb";
-            Connection conn = DriverManager.getConnection(URL, USER, PASS);
+
+            Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
             PreparedStatement pS=conn.prepareStatement(SqlView);
             //pS.executeUpdate();
