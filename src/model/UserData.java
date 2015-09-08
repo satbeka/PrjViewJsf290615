@@ -76,7 +76,7 @@ public class UserData implements Serializable {
         this.display_inf_od = display_inf_od;
     }
 
-    private String display_inf_od=" на последний ОД ";
+    private String display_inf_od=" на последний Операционный день ";
 
     public String getDisplay_inf_last_od() {
         return display_inf_last_od;
@@ -86,7 +86,7 @@ public class UserData implements Serializable {
         this.display_inf_last_od = display_inf_last_od;
     }
 
-    private String display_inf_last_od=" на последний ОД ";
+    private String display_inf_last_od=" на последний Операционный день ";
 
     @PostConstruct
     public void init() {
@@ -104,16 +104,16 @@ public class UserData implements Serializable {
         System.out.println(" dt1 this.display_inf_not="+this.display_inf_not);
         System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
-        this.display_inf_od = " на последний незавершенный ОД ";
+        this.display_inf_od = " на последний незавершенный Операционный день ";
         if (lastInfOD.getStatus()==3){
-            this.display_inf_od = " на последний завершенный ОД ";
+            this.display_inf_od = " на последний завершенный Операционный день ";
         }
 
 
-        this.display_inf_last_od=this.display_inf_od+" ("+lastInfOD.getOd().toString()+")";
+        this.display_inf_last_od=this.display_inf_od+" "+lastInfOD.getOd().toString()+" ";
         this.display_inf_last_od=" По состоянию "+this.display_inf_last_od+" в СВР";
 
-        this.display_inf_od = " на ОД ";
+        this.display_inf_od = " на ";
 
         System.out.println("init  dt1 this.display_inf_od="+this.display_inf_od);
 
@@ -147,9 +147,9 @@ public class UserData implements Serializable {
         System.out.println(" dt1 this.display_inf_not="+this.display_inf_not);
         System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
-        this.display_inf_od = " на незавершенный ОД ";
+        this.display_inf_od = " на незавершенный Операционный день ";
         if (getinfOD(dt1)==3){
-            this.display_inf_od = " на завершенный ОД ";
+            this.display_inf_od = " на завершенный Операционный день ";
         }
 
         System.out.println("dt1 this.display_inf_od="+this.display_inf_od);
@@ -166,7 +166,7 @@ public class UserData implements Serializable {
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
         //System.out.println("nmber="+nmber);
         String number = decimalFormat.format(nmber);
-  System.out.println("getfmtnumb number="+number);
+  //System.out.println("getfmtnumb number="+number);
         return number;
     }
 
@@ -176,12 +176,12 @@ public class UserData implements Serializable {
         symbols.setGroupingSeparator(' ');
         String pattern = "###,###.00";
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-     System.out.println("getfmt dec  Dcml nmber="+nmber);
+     //System.out.println("getfmt dec  Dcml nmber="+nmber);
         if (nmber==null){
             return null;}
         String number = decimalFormat.format(nmber);
 
-   System.out.println("Dcml number="+number);
+   //System.out.println("Dcml number="+number);
         return number;
     }
 
@@ -325,7 +325,7 @@ public class UserData implements Serializable {
                 "--where t.operdate=to_date('17/09/2015 00:00','dd/MM/yyyy HH24:mi')\n" +
                 "where t.operdate in\n" +
                 "\n" +
-                "(select max(t.operdate) from ADM_OPERDATE t)\n ";
+                "(select max(t2.operdate) from ADM_OPERDATE t2 where t2.status!=1)\n ";
 
         System.out.println("SqlView getLastInfOD="+SqlView);
 
@@ -404,7 +404,7 @@ public class UserData implements Serializable {
             ResultSet rs = pS.executeQuery(SqlView);
             System.out.println("  OD User SqlView.executeQ().......");
             conn.commit();
-
+            System.out.println("-----------");
             while (rs.next()) {
 
                 rez=rs.getInt(1);
@@ -559,7 +559,7 @@ public class UserData implements Serializable {
             e.printStackTrace();
         }
 
-
+        System.out.println("-----------");
         //System.out.println(listTisr_non_market);
 
         return listTisr_non_market;

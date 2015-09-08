@@ -103,9 +103,9 @@
                     />
 
 
-            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitle">
+            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD">
 
-                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od}: " styleClass="indLabOD"/>
+                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od} " styleClass="indLabOD"/>
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
                             showOn="button"
                             navigator="true"
@@ -121,7 +121,41 @@
                         />
 
 
+
             </h:panelGrid>
+
+
+
+
+            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD2">
+
+
+                <p:outputLabel for="button" value=" По состоянию с " styleClass="indLabOD2"/>
+                <p:calendar locale="ru" id="button2" value="#{calendarView2.date10}"
+                            showOn="button"
+                            navigator="true"
+                            pattern="dd/MM/yyyy"
+                        />
+
+                <p:outputLabel for="button" value="_____________ по " styleClass="indLabOD2"/>
+                <p:calendar locale="ru" id="button3" value="#{calendarView2.date10}"
+                            showOn="button"
+                            navigator="true"
+                            pattern="dd/MM/yyyy"
+                        />
+
+                <p:commandButton id="submitButton2" value="Получить информацию " update="@form"
+                                 action="#{userData.upd(calendarView2.date10)}"
+                                 onclick="showImage()" oncomplete="hideImage()"
+                                 styleClass="indButnOD2"
+                        />
+
+
+
+            </h:panelGrid>
+
+
+
 
         </h:panelGrid>
 

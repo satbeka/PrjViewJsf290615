@@ -92,6 +92,40 @@ font-size: 13px;
 line-height: 18px;
 }
 
+.indBodyTitleOD
+{
+
+    width:500px;
+    height:90px;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight: bold;
+    text-align: justify;
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.indBodyTitleOD2
+{
+
+    width:500px;
+    height:90px;
+    font-weight: bold;
+    text-align: justify;
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px;
+    line-height: 18px;
+
+    position: relative!important;
+    float: right!important;
+
+    width: 470px!important;
+    /*bottom: 40px!important;*/ /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 512px!important;
+}
+
 .indInfNotTitle{
 
     font-size: medium!important;
@@ -151,6 +185,7 @@ line-height: 18px;
     right: 20px!important; /* Положение от правого края */
     /*left: 15px!important;*/
     float: right!important;
+    width: 300px!important;
 
 }
 
@@ -224,13 +259,43 @@ line-height: 18px;
 
     position: relative!important;
     float: right!important;
+
+    width: 170px!important;
+    bottom: 4px!important; /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 5px!important;
+
 }
+
+.indLabOD2 {
+    /*width: 150px!important;*/
+
+    /*position: relative!important;*/
+    float: right!important;
+
+    width: 170px!important;
+    bottom: 40px!important; /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 500px!important;
+
+}
+
 
 .indButnOD {
     width: 190px!important;
     position: relative!important;
 
     bottom: 1px; /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 200px;
+    float: right!important;
+}
+
+.indButnOD2 {
+    width: 190px!important;
+    position: relative!important;
+
+    bottom: 10px; /* Положение от нижнего края */
     /*right: 15px;*/ /* Положение от правого края */
     left: 200px;
     float: right!important;

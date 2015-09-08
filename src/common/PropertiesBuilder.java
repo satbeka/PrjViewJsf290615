@@ -39,7 +39,9 @@ public class PropertiesBuilder {
         } catch (Exception e) {
             System.out.println("e=" + e.getMessage());
         }
+        System.out.println("-----------");
         System.out.println("par path = " + s);
+        System.out.println("-----------");
 
         return s;
     }
