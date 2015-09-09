@@ -105,7 +105,7 @@
 
             <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD">
 
-                <p:outputLabel for="button" value=" По состоянию на " styleClass="indLabOD"/>
+                <p:outputLabel for="button" value=" По состоянию #{userData.display_inf_od} " styleClass="indLabOD"/>
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
                             showOn="button"
                             navigator="true"
@@ -130,14 +130,14 @@
             <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD2">
 
 
-                <p:outputLabel for="button" value=" По состоянию с __ " styleClass="indLabOD2"/>
-                <p:calendar locale="ru" id="button2" value="#{calendarView2.date1}"
+                <p:outputLabel for="button" value=" По состоянию с " styleClass="indLabOD2"/>
+                <p:calendar locale="ru" id="button2" value="#{calendarView2.date10}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
                         />
 
-                <p:outputLabel for="button" value="__ по (включительно) " styleClass="indLabOD2"/>
+                <p:outputLabel for="button" value="_____________ по " styleClass="indLabOD2"/>
                 <p:calendar locale="ru" id="button3" value="#{calendarView2.date10}"
                             showOn="button"
                             navigator="true"
@@ -145,7 +145,7 @@
                         />
 
                 <p:commandButton id="submitButton2" value="Получить информацию " update="@form"
-                                 action="#{userData.upd(calendarView2.date1,calendarView2.date10)}"
+                                 action="#{userData.upd(calendarView2.date10)}"
                                  onclick="showImage()" oncomplete="hideImage()"
                                  styleClass="indButnOD2"
                         />
@@ -179,14 +179,15 @@
 
 
         <div id="inf_period" style="#{userData.display_inf_cnt}" >
-            <h:outputText value=" По состоянию #{userData.display_inf_period}" styleClass="indInfNotTitle">
+            <h:outputText value=" По состоянию #{userData.display_inf_od} #{calendarView.date10}" styleClass="indInfNotTitle">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
             </h:outputText>
 
         </div>
 
 
         <div id="inf_not" style="#{userData.display_inf_not}" >
-            <h:outputText value="ИНФОРМАЦИЯ НА УКАЗАННУЮ ДАТУ/Период ОТСУТСТВУЕТ " styleClass="indInfNot">
+            <h:outputText value="ИНФОРМАЦИЯ НА УКАЗАННУЮ ДАТУ ОТСУТСТВУЕТ " styleClass="indInfNotTitle">
             </h:outputText>
 
         </div>
@@ -275,7 +276,7 @@
                     <f:facet name="header">
                         <h:outputText value="Продавец" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.prod_code}" styleClass="indTblBodySpace"/>
+                    <h:outputText value="#{tisr_non_market.prod_code}" styleClass="indTblBody"/>
                 </p:column>
 
 
@@ -285,12 +286,12 @@
                     <f:facet name="header">
                         <h:outputText value="Покупатель" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.pokup_code}" styleClass="indTblBodySpace"/>
+                    <h:outputText value="#{tisr_non_market.pokup_code}" styleClass="indTblBody"/>
                 </p:column>
 
                 <p:column sortBy="#{tisr_non_market.p3_volume}" styleClass="indTblBodyNum">
                     <f:facet name="header">
-                        <h:outputText value="Количество ценных бумаг в сделке, шт." styleClass="indTblHead"/>
+                        <h:outputText value="Количество ценных бумаг, шт." styleClass="indTblHead"/>
                     </f:facet>
                     <h:outputText value="#{tisr_non_market.p3_volume}" styleClass="indTblBodyNum">
 
@@ -316,7 +317,7 @@
                     <f:facet name="header">
                         <h:outputText value="Источник сведений" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="учетная система ЕРЦБ" styleClass="indTblBody"/>
+                    <h:outputText value="Учетная система" styleClass="indTblBody"/>
                 </p:column>
 
             </p:dataTable>

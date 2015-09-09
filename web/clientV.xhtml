@@ -13,25 +13,25 @@
 
 <h:inputHidden value="#{dfView.viewClientsCustomized(dfView.client_id)}"/>
 
-<h:body style="width: 300px; height: 320px;">
+<h:body style="width: 800px; height: 820px;">
 
     <f:facet name="last">
-        <h:outputStylesheet library="default" name="css/index.css" />
+        <h:outputStylesheet library="default" name="css/nin.css" />
     </f:facet>
 
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" styleClass="indNin">
 
 
-        <h:outputText value="Юридический адрес:" styleClass="indNin"/>
+        <h:outputText value="Юридический адрес:"/>
         <h:outputText value="#{dfView.selectedClient.a1_j_address}" styleClass="indNin"/>
 
         <h:outputText value="ИИН/БИН:" styleClass="indNin"/>
         <h:outputText value="#{dfView.selectedClient.a1_idn}" styleClass="indNin"/>
 
-        <h:outputText value="номер регистрации (перерегистрации)" styleClass="indNin"/>
+        <h:outputText value="Номер регистрации (перерегистрации)" styleClass="indNin"/>
         <h:outputText value="#{dfView.selectedClient.a1_cl_doc_nom}" styleClass="indNin"/>
 
-        <h:outputText value="датa регистрации (перерегистрации)" styleClass="indNin"/>
+        <h:outputText value="Датa регистрации (перерегистрации)" styleClass="indNin"/>
         <h:outputText value="#{dfView.selectedClient.a1_cl_doc_dat}" styleClass="indNin"/>
 
 

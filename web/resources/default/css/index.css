@@ -136,6 +136,15 @@ line-height: 18px;
 
 }
 
+.indInfNot{
+
+    font-size: 11px!important;
+    font-weight: bold!important;
+    text-align: center!important;
+    font-family: Times New Roman,sans-serif!important;
+
+}
+
 .indTblHead {
     text-align: justify;
     font-family: Times New Roman,sans-serif!important;
@@ -159,18 +168,27 @@ line-height: 18px;
     font-size: 13px!important;
     font-family: Times New Roman,sans-serif!important;
 }
-.indNin {
-    text-align: left!important;
-    font-family: Times New Roman,sans-serif!important;
-    font-size: 13px!important;
-}
+
 .indTblBody {
 
     font-family: Times New Roman,sans-serif!important;
     font-size: 13px!important;
     line-height: 18px!important;
+    }
+
+.indTblBodySpace {
+
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px!important;
+    line-height: 18px!important;
+    /*text-indent: 5em!important;*/
+    white-space: pre!important;
+}
 
 
+
+.ui-widget-content {
+    text-align: left!important;
 }
 
 .indLastOD {

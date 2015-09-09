@@ -16,9 +16,9 @@
         <h:outputStylesheet library="default" name="css/nin.css" />
     </f:facet>
     <li value="#{dfView.viewNINCustomized(dfView.nin)}"></li>
-    <p:panelGrid columns="2">
+    <p:panelGrid columns="2" styleClass="indNin">
 
-        <h:outputText value="NIN:" styleClass="indNin"/>
+        <h:outputText value="Национальный идентификационный номер ЦБ:"/>
         <h:outputText value="#{dfView.nin}" styleClass="indNin"/>
 
         <h:outputText value="Дата регистрации выпуска ЦБ:" styleClass="indNin"/>
