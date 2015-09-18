@@ -97,8 +97,8 @@ line-height: 18px;
 
     width:500px;
     height:90px;
-    margin-left:auto;
-    margin-right:auto;
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
     font-weight: bold;
     text-align: justify;
     font-family: Times New Roman,sans-serif!important;
@@ -117,7 +117,7 @@ line-height: 18px;
     font-size: 13px;
     line-height: 18px;
 
-    position: relative!important;
+    /*position: relative!important;*/
     float: right!important;
 
     width: 470px!important;
@@ -138,10 +138,11 @@ line-height: 18px;
 
 .indInfNot{
 
-    font-size: 11px!important;
+    font-size: 15px!important;
     font-weight: bold!important;
     text-align: center!important;
     font-family: Times New Roman,sans-serif!important;
+    color: crimson;
 
 }
 
@@ -291,10 +292,10 @@ line-height: 18px;
     /*position: relative!important;*/
     float: right!important;
 
-    width: 170px!important;
+    width: 50px!important;
     bottom: 40px!important; /* Положение от нижнего края */
     /*right: 15px;*/ /* Положение от правого края */
-    left: 500px!important;
+    /*left: 500px!important;*/
 
 }
 
@@ -320,9 +321,9 @@ line-height: 18px;
 }
 
 .indTwoFrame {
-    width: 924px!important;
+    width: 1024px!important;
     height: 210px!important;
-    position: relative!important;
+    /*position: relative!important;*/
 }
 
 .ui-paginator {
@@ -453,8 +454,6 @@ line-height: 18px;
 
 .indFrmOD
 {
-
-
     font-weight: bold!important;
     text-align: justify!important;
     font-family: Times New Roman,sans-serif!important;
@@ -462,5 +461,21 @@ line-height: 18px;
     allowtransparency:true!important;
     background:transparent!important;
 
+}
 
+.content-table, .content-table-text, .content-table-cur {
+    background: none repeat scroll 0% 0% white;
+    border-collapse: collapse;
+    color: rgb(60, 60, 60);
+    font-size: 11px;
+    width: 1050px;
+}
+
+.content-table th, .content-table-text th {
+    font-size: 11px;
+    padding: 1px 7px 6px;
+}
+.content-table th, .content-table-text th, .content-table-cur th {
+    background: url("#{resource['default/img/th_bg.png']}") repeat-x scroll center bottom rgb(234, 234, 234);
+    border: 1px solid rgb(238, 238, 238);
 }

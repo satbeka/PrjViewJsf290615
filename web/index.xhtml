@@ -86,7 +86,7 @@
 
 
             <h:panelGrid columns="2" cellpadding="10" styleClass="indHeadTitle" >
-                <h:outputText value="Информационная площадка по внебиржевым сделкам по ЦБ ">
+                <h:outputText value="Информационная площадка по сделкам с ценными бумагами на внебиржевом рынке ">
                 </h:outputText>
 
             </h:panelGrid>
@@ -95,12 +95,8 @@
 
 
 
-        <h:panelGrid id="grid" columns="2" cellspacing="20" border="0" styleClass="indTwoFrame">
+        <h:panelGrid id="grid" columns="3" cellspacing="20" border="0" styleClass="indTwoFrame">
 
-            <h:outputText value=" #{userData.display_inf_last_od}"
-                          styleClass="indLastOD"
-                          style="#{userData.display_inf_not2}"
-                    />
 
 
             <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD">
@@ -110,7 +106,9 @@
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
-                            />
+                            widgetVar="mycal1"
+                            onchange="PrimeFaces.info('Selected date from p:calendar');"
+                        />
 
 
 
@@ -124,20 +122,23 @@
 
             </h:panelGrid>
 
+<h:panelGrid>
+    <h:outputLabel>или</h:outputLabel>
+</h:panelGrid>
 
 
 
             <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD2">
 
 
-                <p:outputLabel for="button" value=" По состоянию с __ " styleClass="indLabOD2"/>
+                <p:outputLabel for="button" value="  с  " styleClass="indLabOD2"/>
                 <p:calendar locale="ru" id="button2" value="#{calendarView2.date1}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
                         />
 
-                <p:outputLabel for="button" value="__ по (включительно) " styleClass="indLabOD2"/>
+                <p:outputLabel for="button" value=" по  " styleClass="indLabOD2"/>
                 <p:calendar locale="ru" id="button3" value="#{calendarView2.date10}"
                             showOn="button"
                             navigator="true"
@@ -179,14 +180,14 @@
 
 
         <div id="inf_period" style="#{userData.display_inf_cnt}" >
-            <h:outputText value=" По состоянию #{userData.display_inf_period}" styleClass="indInfNotTitle">
+            <h:outputText value=" Информация предоставлена по итогам #{userData.display_inf_period}" styleClass="indInfNotTitle">
             </h:outputText>
 
         </div>
 
 
         <div id="inf_not" style="#{userData.display_inf_not}" >
-            <h:outputText value="ИНФОРМАЦИЯ НА УКАЗАННУЮ ДАТУ/Период ОТСУТСТВУЕТ " styleClass="indInfNot">
+            <h:outputText value="Информация на указанную дату/период отсутствует " styleClass="indInfNot">
             </h:outputText>
 
         </div>
@@ -228,10 +229,9 @@
                     </f:facet>
 
 
-
                     <p:link target="_blank" title="View Detail" id="clnCard2"
                             outcome="clientV" value="#{tisr_non_market.p3_emitent_name_str}">
-                        <f:param name="client_id" value="#{tisr_non_market.client_id}" />
+                        <f:param name="client_idn" value="#{tisr_non_market.bin}" />
                     </p:link>
 
 
@@ -312,11 +312,12 @@
                 </p:column>
 
 
-                <p:column>
+                <p:column filterBy="#{tisr_non_market.source_}"
+                          filterMatchMode="startsWith">
                     <f:facet name="header">
                         <h:outputText value="Источник сведений" styleClass="indTblHead"/>
                     </f:facet>
-                    <h:outputText value="учетная система ЕРЦБ" styleClass="indTblBody"/>
+                    <h:outputText value="#{tisr_non_market.source_}" styleClass="indTblBody"/>
                 </p:column>
 
             </p:dataTable>
@@ -324,6 +325,22 @@
 
 
     </h:form>
+
+    <br></br>
+
+
+    <table class="content-table">
+        <tbody><tr><th colspan="3">Справка</th></tr>
+        <tr><td colspan="3" align="left">
+            <ul>
+                <li>Информация предоставляется по итогам завершенного операционного дня</li>
+                <li>Для работы с данным разделом вам потребуется интернет-браузер с поддержкой JavaScript. Таковым является практически любой современный браузер, за исключением тех, в которых JavaScript отключен по умолчанию. В этом случае Вам нужно включить поддержку JavaScript в настройках Вашего браузера.</li>
+                <li>Датой информации при первой загрузке сайта является последний завершенный операционный день.</li>
+                <li>Дата и период информации устанавливается пользователем индивидуально.</li>
+            </ul>
+        </td></tr>
+        </tbody></table>
+
 
 </h:body>
 

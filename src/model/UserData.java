@@ -30,7 +30,7 @@ public class UserData implements Serializable {
         this.display = display;
     }
 
-    private String display="display:none";
+    private String display = "display:none";
 
     public String getDisplay_inf_not() {
         return display_inf_not;
@@ -40,7 +40,7 @@ public class UserData implements Serializable {
         this.display_inf_not = display_inf_not;
     }
 
-    private String display_inf_not="display:none";
+    private String display_inf_not = "display:none";
 
     public String getDisplay_inf_not2() {
         return display_inf_not2;
@@ -50,7 +50,7 @@ public class UserData implements Serializable {
         this.display_inf_not2 = display_inf_not2;
     }
 
-    private String display_inf_not2="";
+    private String display_inf_not2 = "";
 
     public String getDisplay_inf_cnt() {
         return display_inf_cnt;
@@ -60,7 +60,7 @@ public class UserData implements Serializable {
         this.display_inf_cnt = display_inf_cnt;
     }
 
-    private String display_inf_cnt="display:none";
+    private String display_inf_cnt = "display:none";
 
     public List<Tisr_non_market> getTisr_non_markets() {
         return tisr_non_markets;
@@ -76,7 +76,7 @@ public class UserData implements Serializable {
         this.display_inf_od = display_inf_od;
     }
 
-    private String display_inf_od=" на последний Операционный день ";
+    private String display_inf_od = " на последний Операционный день ";
 
     public String getDisplay_inf_last_od() {
         return display_inf_last_od;
@@ -86,7 +86,7 @@ public class UserData implements Serializable {
         this.display_inf_last_od = display_inf_last_od;
     }
 
-    private String display_inf_last_od=" на последний Операционный день ";
+    private String display_inf_last_od = " на последний Операционный день ";
 
     public String getDisplay_inf_period() {
         return display_inf_period;
@@ -96,68 +96,84 @@ public class UserData implements Serializable {
         this.display_inf_period = display_inf_period;
     }
 
-    private String display_inf_period="-";
+    private String display_inf_period = "-";
 
     @PostConstruct
     public void init() {
         System.out.println("init=");
         //this.tisr_non_markets = new ArrayList<Tisr_non_market>();
-        LastInfOD lastInfOD =getLastInfOD();
+        LastInfOD lastInfOD = getLastInfOD();
 
         this.tisr_non_markets = getView(lastInfOD.getOd());
-        System.out.println(" init dt1 this.tisr_non_markets.size()="+this.tisr_non_markets.size());
-        if (this.tisr_non_markets.size()!=0
-                ){this.display="";this.display_inf_not="display:none";this.display_inf_cnt="";}
-        else {this.display="display:none";this.display_inf_not="";this.display_inf_cnt="display:none";};
+        //System.out.println(" init dt1 this.tisr_non_markets.size()=" + this.tisr_non_markets.size());
+        if (this.tisr_non_markets.size() != 0
+                ) {
+            this.display = "";
+            this.display_inf_not = "display:none";
+            this.display_inf_cnt = "";
+        } else {
+            this.display = "display:none";
+            this.display_inf_not = "";
+            this.display_inf_cnt = "display:none";
+        }
+        ;
 
-        System.out.println(" dt1 this.display="+this.display);
-        System.out.println(" dt1 this.display_inf_not="+this.display_inf_not);
-        System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
+        //System.out.println(" dt1 this.display=" + this.display);
+        //System.out.println(" dt1 this.display_inf_not=" + this.display_inf_not);
+        //System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
         this.display_inf_od = " на последний незавершенный Операционный день ";
-        if (lastInfOD.getStatus()==3){
+        if (lastInfOD.getStatus() == 3) {
             this.display_inf_od = " на последний завершенный Операционный день ";
         }
 
 
-        this.display_inf_last_od=this.display_inf_od+" "+lastInfOD.getOd().toString()+" ";
-        this.display_inf_last_od=" По состоянию "+this.display_inf_last_od+" в СВР";
+        this.display_inf_last_od = this.display_inf_od + " " + lastInfOD.getOd().toString() + " ";
+        this.display_inf_last_od = " По состоянию " + this.display_inf_last_od + " в СВР";
 
         this.display_inf_od = " на ";
 
-        System.out.println("init  dt1 this.display_inf_od="+this.display_inf_od);
+        //System.out.println("init  dt1 this.display_inf_od=" + this.display_inf_od);
 
         //ApplicationThread.init();
 
 
     }
 
-    public void upd(Date dt1,Date dt2) {
+    public void upd(Date dt1, Date dt2) {
         //System.out.println("dt1="+dt1);
-        this.tisr_non_markets = getView(dt1,dt2);
-        System.out.println("dt1 dt2 this.tisr_non_markets.size()="+this.tisr_non_markets.size());
-        if (this.tisr_non_markets.size()!=0
-                ){this.display="";this.display_inf_not="display:none";this.display_inf_cnt="";}
-        else {this.display="display:none";this.display_inf_not="";this.display_inf_cnt="display:none";};
+        this.tisr_non_markets = getView(dt1, dt2);
+        System.out.println("dt1 dt2 this.tisr_non_markets.size()=" + this.tisr_non_markets.size());
+        if (this.tisr_non_markets.size() != 0
+                ) {
+            this.display = "";
+            this.display_inf_not = "display:none";
+            this.display_inf_cnt = "";
+        } else {
+            this.display = "display:none";
+            this.display_inf_not = "";
+            this.display_inf_cnt = "display:none";
+        }
+        ;
 
         //this.display_inf_not2="display:none";
-        this.display_inf_last_od="     ";
+        this.display_inf_last_od = "     ";
 
-        System.out.println(" dt1 2 this.display="+this.display);
-        System.out.println(" dt1 2 this.display_inf_not="+this.display_inf_not);
-        System.out.println(" dt1 2 this.display_inf_cnt=" + this.display_inf_cnt);
+        //System.out.println(" dt1 2 this.display=" + this.display);
+        //System.out.println(" dt1 2 this.display_inf_not=" + this.display_inf_not);
+        //System.out.println(" dt1 2 this.display_inf_cnt=" + this.display_inf_cnt);
 
         this.display_inf_od = "  за период с ";
 
-        System.out.println("dt1 this.display_inf_od="+this.display_inf_od);
+        //System.out.println("dt1 this.display_inf_od=" + this.display_inf_od);
 
-        display_inf_period=display_inf_od;
+        display_inf_period = display_inf_od;
         SimpleDateFormat dtF = new SimpleDateFormat("dd.MM.yyyy");
-        display_inf_period=display_inf_od + "  "+dtF.format(dt1);
-        System.out.println(" display_inf_period1 =="+display_inf_period);
+        display_inf_period = display_inf_od + "  " + dtF.format(dt1);
+        //System.out.println(" display_inf_period1 ==" + display_inf_period);
 
-        display_inf_period=display_inf_period+" по "+dtF.format(dt2);
-        System.out.println(" display_inf_period2 =="+display_inf_period);
+        display_inf_period = display_inf_period + " по " + dtF.format(dt2);
+        //System.out.println(" display_inf_period2 ==" + display_inf_period);
         //dt1Str = dtF.format(dt1);
 
     }
@@ -165,88 +181,112 @@ public class UserData implements Serializable {
     public void upd(Date dt1) {
         //System.out.println("dt1="+dt1);
         this.tisr_non_markets = getView(dt1);
-        System.out.println("dt1 this.tisr_non_markets.size()="+this.tisr_non_markets.size());
-        if (this.tisr_non_markets.size()!=0
-                ){this.display="";this.display_inf_not="display:none";this.display_inf_cnt="";}
-        else {this.display="display:none";this.display_inf_not="";this.display_inf_cnt="display:none";};
+        System.out.println("dt1 this.tisr_non_markets.size()=" + this.tisr_non_markets.size());
+        if (this.tisr_non_markets.size() != 0
+                ) {
+            this.display = "";
+            this.display_inf_not = "display:none";
+            this.display_inf_cnt = "";
+        } else {
+            this.display = "display:none";
+            this.display_inf_not = "";
+            this.display_inf_cnt = "display:none";
+        }
+        ;
 
         //this.display_inf_not2="display:none";
-        this.display_inf_last_od="                                ";
+        this.display_inf_last_od = "                                ";
 
-        System.out.println(" dt1 this.display="+this.display);
-        System.out.println(" dt1 this.display_inf_not="+this.display_inf_not);
-        System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
+        //System.out.println(" dt1 this.display=" + this.display);
+        //System.out.println(" dt1 this.display_inf_not=" + this.display_inf_not);
+        //System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
         this.display_inf_od = " на незавершенный Операционный день ";
-        if (getinfOD(dt1)==3){
+        if (getinfOD(dt1) == 3) {
             this.display_inf_od = " на завершенный Операционный день ";
         }
 
-        System.out.println("dt1 this.display_inf_od="+this.display_inf_od);
+        //System.out.println("dt1 this.display_inf_od=" + this.display_inf_od);
 
-        display_inf_period=display_inf_od;
+        display_inf_period = display_inf_od;
         SimpleDateFormat dtF = new SimpleDateFormat("dd.MM.yyyy");
-        display_inf_period=display_inf_od + "  "+dtF.format(dt1);
-        System.out.println(" display_inf_period=="+display_inf_period);
+        display_inf_period = display_inf_od + "  " + dtF.format(dt1);
+        //System.out.println(" display_inf_period==" + display_inf_period);
         //dt1Str = dtF.format(dt1);
-
 
 
     }
 
-    public static String getFrmtNumb(Integer nmber){
-        DecimalFormatSymbols symbols  = new DecimalFormatSymbols(Locale.getDefault());
+    public static String getFrmtNumb(Integer nmber) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         //decimalFormat.setGroupingSize(3);
         symbols.setGroupingSeparator(' ');
         String pattern = "#,###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
         //System.out.println("nmber="+nmber);
         String number = decimalFormat.format(nmber);
-  //System.out.println("getfmtnumb number="+number);
+        //System.out.println("getfmtnumb number="+number);
         return number;
     }
 
-    public static String getFrmtDcml(BigDecimal nmber){
-        DecimalFormatSymbols symbols  = new DecimalFormatSymbols(Locale.getDefault());
+    public static String getFrmtLong(Long nmber) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        //decimalFormat.setGroupingSize(3);
+        symbols.setGroupingSeparator(' ');
+        String pattern = "#,###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+        //System.out.println("nmber="+nmber);
+        String number = decimalFormat.format(nmber);
+        //System.out.println("getfmtnumb number="+number);
+        return number;
+    }
+
+    public static String getFrmtDcml(BigDecimal nmber) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         //decimalFormat.setGroupingSize(3);
         symbols.setGroupingSeparator(' ');
         String pattern = "###,###.00";
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
-     //System.out.println("getfmt dec  Dcml nmber="+nmber);
-        if (nmber==null){
-            return null;}
+        //System.out.println("getfmt dec  Dcml nmber="+nmber);
+        if (nmber == null) {
+            return null;
+        }
         String number = decimalFormat.format(nmber);
 
-   //System.out.println("Dcml number="+number);
+        //System.out.println("Dcml number="+number);
         return number;
     }
 
 
-    public static String getRusCod(String engCod){
+    public static String getRusCod(String engCod) {
         //System.out.println("engCod="+engCod);
-        if (engCod.contains("JURRZ")){
-            System.out.println(" ur lico   ");
-            return "Юр.лицо    "+"\n"+" (резидент РК)";}
-        if (engCod.contains("FIZRZ")){
-            return "Физ.лицо (резидент РК)";}
-        if (engCod.contains("JURNN")){
-            return "Юр.лицо       \"+\"\\n\"+\" (нерезидент)";}
-        if (engCod.contains("FIZNN")){
-            return "Физ.лицо (нерезидент)";}
+        if (engCod.contains("JURRZ")) {
+            //System.out.println(" ur lico   ");
+            return "Юр.лицо    " + "\n" + " (резидент РК)";
+        }
+        if (engCod.contains("FIZRZ")) {
+            return "Физ.лицо (резидент РК)";
+        }
+        if (engCod.contains("JURNN")) {
+            return "Юр.лицо       \"+\"\\n\"+\" (нерезидент)";
+        }
+        if (engCod.contains("FIZNN")) {
+            return "Физ.лицо (нерезидент)";
+        }
 
-        if (engCod.contains("STBNK")){
-            return "Банк второго уровня РК";}
-        if (engCod.contains("INSOR")){
-            return "Страховая организация РК";}
+        if (engCod.contains("STBNK")) {
+            return "Банк второго уровня РК";
+        }
+        if (engCod.contains("INSOR")) {
+            return "Страховая организация РК";
+        }
 
 
         return engCod;
     }
 
 
-
-
-    private static ArrayList<Tisr_non_market> getView(Date dt1,Date dt2){ //OOLLDD
+    private static ArrayList<Tisr_non_market> getView(Date dt1, Date dt2) { //OOLLDD
 
         ArrayList<Tisr_non_market> listTisr_non_market = new ArrayList<Tisr_non_market>();
 
@@ -275,18 +315,18 @@ public class UserData implements Serializable {
                 " order by ORDER_DATE";
 */
 
-        String SqlView="select \n" +
+        String SqlView = "select \n" +
                 "RN,ORDER_DATE,order_n,\n" +
                 "p3_emitent_name_str,p3_nsin,PROD_CODE,POKUP_CODE,\n" +
-                "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3)\n" +
+                "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3),Source_\n" +
                 "\n" +
                 " from TISR_NON_MARKET" +
-                " where order_date >= to_date('"+dt1Str+"','dd/MM/yyyy HH24:mi') " +
-                " and order_date<=to_date('"+dt2Str+"','dd/MM/yyyy HH24:mi')" +
+                " where order_date >= to_date('" + dt1Str + "','dd/MM/yyyy HH24:mi') " +
+                " and order_date<=to_date('" + dt2Str + "','dd/MM/yyyy HH24:mi')" +
                 " order by ORDER_DATE DESC ";
 
 
-        System.out.println("SqlView="+SqlView);
+        System.out.println("SqlView=" + SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
         String uRL = OracleDB.getSystemDb();
@@ -299,16 +339,16 @@ public class UserData implements Serializable {
 
             Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
-            PreparedStatement pS=conn.prepareStatement(SqlView);
+            PreparedStatement pS = conn.prepareStatement(SqlView);
             //pS.executeUpdate();
             ResultSet rs = pS.executeQuery(SqlView);
             System.out.println("   User SqlView.executeQ().......");
             conn.commit();
-            int k=0;
+            int k = 0;
 
             while (rs.next()) {
 
-                Tisr_non_market tisr_non_market=new Tisr_non_market();
+                Tisr_non_market tisr_non_market = new Tisr_non_market();
 
                 tisr_non_market.setClient_id(rs.getString(11));
 
@@ -323,7 +363,7 @@ public class UserData implements Serializable {
                 tisr_non_market.setOrder_n(rs.getString(3));
 */
 
-                BigDecimal dcml=rs.getBigDecimal(9);
+                BigDecimal dcml = rs.getBigDecimal(9);
                 tisr_non_market.setP3_deal_cost(UserData.getFrmtDcml(dcml));
 
                 tisr_non_market.setP3_emitent_name_str(rs.getString(4));
@@ -337,25 +377,32 @@ public class UserData implements Serializable {
                 nmb=rs.getInt(10);
                 tisr_non_market.setP3_price(UserData.getFrmtNumb(nmb));
                 */
-                dcml=rs.getBigDecimal(10);
-                System.out.println(" select dcml="+dcml);
+                dcml = rs.getBigDecimal(10);
+                //System.out.println(" select dcml=" + dcml);
                 tisr_non_market.setP3_price(UserData.getFrmtDcml(dcml));
 
-                Integer nmb;
+                Long nmb;
 
-                nmb=rs.getInt(8);
-                tisr_non_market.setP3_volume(UserData.getFrmtNumb(nmb));
+                nmb = rs.getLong(8);
+                tisr_non_market.setP3_volume(UserData.getFrmtLong(nmb));
 
 
                 tisr_non_market.setPokup_code(getRusCod(rs.getString(7)));
                 tisr_non_market.setProd_code(getRusCod(rs.getString(6)));
                 tisr_non_market.setS18_name(rs.getString(12));
+
+                if (rs.getString(14).contains("ЕРЦБ")) {
+                    tisr_non_market.setSource_("учетная система ЕРЦБ");
+                } else {
+                    tisr_non_market.setSource_("учетная система ЦДЦБ");
+                }
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));
 
                 listTisr_non_market.add(tisr_non_market);
 
-            };
+            }
+            ;
             //System.out.println("k="+k);
 
             if (pS != null) {
@@ -379,10 +426,9 @@ public class UserData implements Serializable {
     }
 
 
+    private static LastInfOD getLastInfOD() {
 
-    private static LastInfOD getLastInfOD(){
-
-        LastInfOD lastInfOD= new LastInfOD();
+        LastInfOD lastInfOD = new LastInfOD();
         //Integer rez=0;
 
         /*
@@ -394,14 +440,14 @@ public class UserData implements Serializable {
         System.out.println("dt1Str OD=" + dt1Str);
         */
 
-        String SqlView="" +
+        String SqlView = "" +
                 "select t.operdate,t.status from ADM_OPERDATE t \n" +
                 "--where t.operdate=to_date('17/09/2015 00:00','dd/MM/yyyy HH24:mi')\n" +
                 "where t.operdate in\n" +
                 "\n" +
                 "(select max(t2.operdate) from ADM_OPERDATE t2 where t2.status!=1)\n ";
 
-        System.out.println("SqlView getLastInfOD="+SqlView);
+        System.out.println("SqlView getLastInfOD=" + SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
         String uRL = OracleDB.getSystemDb();
@@ -413,17 +459,18 @@ public class UserData implements Serializable {
 
             Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
-            PreparedStatement pS=conn.prepareStatement(SqlView);
+            PreparedStatement pS = conn.prepareStatement(SqlView);
             //pS.executeUpdate();
             ResultSet rs = pS.executeQuery(SqlView);
-            System.out.println("   User SqlView.executeQ().......");
+            //System.out.println("   User SqlView.executeQ().......");
             conn.commit();
 
             while (rs.next()) {
                 lastInfOD.setOd(rs.getDate(1));
                 lastInfOD.setStatus(rs.getInt(2));
 
-            };
+            }
+            ;
             //System.out.println("k="+k);
 
             if (pS != null) {
@@ -445,23 +492,23 @@ public class UserData implements Serializable {
     }
 
 
-    private static Integer getinfOD(Date dt1){
+    private static Integer getinfOD(Date dt1) {
 
 
-        Integer rez=0;
+        Integer rez = 0;
 
         String dt1Str;
         //if (dt1==null){dt1Str="01/01/1000";}
-        System.out.println(dt1);
+        //System.out.println(dt1);
         SimpleDateFormat dtF = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         dt1Str = dtF.format(dt1);
 
-        System.out.println("dt1Str OD=" + dt1Str);
+        //System.out.println("dt1Str OD=" + dt1Str);
 
-        String SqlView="select status from ADM_OPERDATE t " +
-                " where operdate = to_date('"+dt1Str+"','dd/MM/yyyy HH24:mi') ";
+        String SqlView = "select status from ADM_OPERDATE t " +
+                " where operdate = to_date('" + dt1Str + "','dd/MM/yyyy HH24:mi') ";
 
-        System.out.println("SqlView OD="+SqlView);
+        //System.out.println("SqlView OD=" + SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
         String uRL = OracleDB.getSystemDb();
@@ -473,17 +520,18 @@ public class UserData implements Serializable {
 
             Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
-            PreparedStatement pS=conn.prepareStatement(SqlView);
+            PreparedStatement pS = conn.prepareStatement(SqlView);
             //pS.executeUpdate();
             ResultSet rs = pS.executeQuery(SqlView);
-            System.out.println("  OD User SqlView.executeQ().......");
+            //System.out.println("  OD User SqlView.executeQ().......");
             conn.commit();
-            System.out.println("-----------");
+            //System.out.println("-----------");
             while (rs.next()) {
 
-                rez=rs.getInt(1);
+                rez = rs.getInt(1);
 
-            };
+            }
+            ;
             //System.out.println("k="+k);
 
             if (pS != null) {
@@ -500,31 +548,30 @@ public class UserData implements Serializable {
         }
 
 
-        System.out.println(" OD rez= "+rez);
+        //System.out.println(" OD rez= " + rez);
 
         return rez;
 
     }
 
 
-
-    private static ArrayList<Tisr_non_market> getView(Date dt1){
+    private static ArrayList<Tisr_non_market> getView(Date dt1) {
 
         ArrayList<Tisr_non_market> listTisr_non_market = new ArrayList<Tisr_non_market>();
 
         String dt1Str;
         String dt2Str;
         //if (dt1==null){dt1Str="01/01/1000";}
-        System.out.println(dt1);
+        //System.out.println(dt1);
         SimpleDateFormat dtF = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         dt1Str = dtF.format(dt1);
 
-    System.out.println("dt1Str=" + dt1Str);
+        //System.out.println("dt1Str=" + dt1Str);
         Date dt2 = new Date();
         dt2.setTime(dt1.getTime() + 1 * 24 * 60 * 60 * 1000);
         dt2Str = dtF.format(dt2);
 
-    System.out.println("dt2str=" + dt2Str);
+        //System.out.println("dt2str=" + dt2Str);
 
         /*
         String SqlView="select \n" +
@@ -537,18 +584,18 @@ public class UserData implements Serializable {
                 " order by ORDER_DATE";
 */
 
-        String SqlView="select \n" +
+        String SqlView = "select \n" +
                 "RN,ORDER_DATE,order_n,\n" +
                 "p3_emitent_name_str,p3_nsin,PROD_CODE,POKUP_CODE,\n" +
-                "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3)\n" +
+                "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3),source_\n" +
                 "\n" +
                 " from TISR_NON_MARKET" +
-                " where order_date >= to_date('"+dt1Str+"','dd/MM/yyyy HH24:mi') " +
-                " and order_date<=to_date('"+dt2Str+"','dd/MM/yyyy HH24:mi')" +
+                " where order_date >= to_date('" + dt1Str + "','dd/MM/yyyy HH24:mi') " +
+                " and order_date<=to_date('" + dt2Str + "','dd/MM/yyyy HH24:mi')" +
                 " order by ORDER_DATE DESC ";
 
 
-        System.out.println("SqlView="+SqlView);
+        System.out.println("SqlView=" + SqlView);
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
         String uRL = OracleDB.getSystemDb();
@@ -561,16 +608,16 @@ public class UserData implements Serializable {
 
             Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
 
-            PreparedStatement pS=conn.prepareStatement(SqlView);
+            PreparedStatement pS = conn.prepareStatement(SqlView);
             //pS.executeUpdate();
             ResultSet rs = pS.executeQuery(SqlView);
             System.out.println("   User SqlView.executeQ().......");
             conn.commit();
-            int k=0;
+            int k = 0;
 
             while (rs.next()) {
 
-                Tisr_non_market tisr_non_market=new Tisr_non_market();
+                Tisr_non_market tisr_non_market = new Tisr_non_market();
 
                 tisr_non_market.setClient_id(rs.getString(11));
 
@@ -585,7 +632,7 @@ public class UserData implements Serializable {
                 tisr_non_market.setOrder_n(rs.getString(3));
 */
 
-                BigDecimal dcml=rs.getBigDecimal(9);
+                BigDecimal dcml = rs.getBigDecimal(9);
                 tisr_non_market.setP3_deal_cost(UserData.getFrmtDcml(dcml));
 
                 tisr_non_market.setP3_emitent_name_str(rs.getString(4));
@@ -599,25 +646,31 @@ public class UserData implements Serializable {
                 nmb=rs.getInt(10);
                 tisr_non_market.setP3_price(UserData.getFrmtNumb(nmb));
                 */
-                dcml=rs.getBigDecimal(10);
-                System.out.println(" select dcml="+dcml);
+                dcml = rs.getBigDecimal(10);
+                System.out.println(" select dcml=" + dcml);
                 tisr_non_market.setP3_price(UserData.getFrmtDcml(dcml));
 
                 Integer nmb;
 
-                nmb=rs.getInt(8);
+                nmb = rs.getInt(8);
                 tisr_non_market.setP3_volume(UserData.getFrmtNumb(nmb));
 
 
                 tisr_non_market.setPokup_code(getRusCod(rs.getString(7)));
                 tisr_non_market.setProd_code(getRusCod(rs.getString(6)));
                 tisr_non_market.setS18_name(rs.getString(12));
+                if (rs.getString(14).contains("ЕРЦБ")) {
+                    tisr_non_market.setSource_("учетная система ЕРЦБ");
+                } else {
+                    tisr_non_market.setSource_("учетная система ЦДЦБ");
+                }
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));
 
                 listTisr_non_market.add(tisr_non_market);
 
-            };
+            }
+            ;
             //System.out.println("k="+k);
 
             if (pS != null) {
@@ -650,7 +703,6 @@ public class UserData implements Serializable {
         return tisr_non_marketDataModel;
     }
     */
-
 
 
     public void setDate(String date) {

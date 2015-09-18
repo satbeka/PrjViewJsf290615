@@ -8,10 +8,10 @@
 </h:head>
 
 <f:metadata>
-    <f:viewParam name="client_id" value="#{dfView.client_id}" />
+    <f:viewParam name="client_idn" value="#{dfView.nin}" />
 </f:metadata>
 
-<h:inputHidden value="#{dfView.viewClientsCustomized(dfView.client_id)}"/>
+<h:inputHidden value="#{dfView.viewClientsCustomized(dfView.nin)}"/>
 
 <h:body style="width: 800px; height: 820px;">
 
@@ -21,6 +21,8 @@
 
     <p:panelGrid columns="2" styleClass="indNin">
 
+        <h:outputText value="Полное наименование Эмитента:"/>
+        <h:outputText value="#{dfView.selectedClient.a1_cl_fullname}" styleClass="indNin"/>
 
         <h:outputText value="Юридический адрес:"/>
         <h:outputText value="#{dfView.selectedClient.a1_j_address}" styleClass="indNin"/>

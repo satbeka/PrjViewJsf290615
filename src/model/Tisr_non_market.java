@@ -42,22 +42,25 @@ public class Tisr_non_market {
 
 
     public void setOrder_date(Date order_date) {
-        if (order_date==null){this.order_date=null;return;}
+        if (order_date == null) {
+            this.order_date = null;
+            return;
+        }
         SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        String yyyy=dt1.format(order_date).substring(6,10);
-        String mm=dt1.format(order_date).substring(3,5);
-        String dd=dt1.format(order_date).substring(0,2);
-        String hh=dt1.format(order_date).substring(11,13);
-        String mi=dt1.format(order_date).substring(14,16);
-        String sec=dt1.format(order_date).substring(17,19);
+        String yyyy = dt1.format(order_date).substring(6, 10);
+        String mm = dt1.format(order_date).substring(3, 5);
+        String dd = dt1.format(order_date).substring(0, 2);
+        String hh = dt1.format(order_date).substring(11, 13);
+        String mi = dt1.format(order_date).substring(14, 16);
+        String sec = dt1.format(order_date).substring(17, 19);
 
 
-      //System.out.println(yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec);
+        //System.out.println(yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec);
 
         //this.order_date = yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec; //090915
-        this.order_date = yyyy+"."+mm+"."+dd;
-            }
+        this.order_date = yyyy + "." + mm + "." + dd;
+    }
 
     public String getOrder_n() {
         return order_n;
@@ -135,6 +138,16 @@ public class Tisr_non_market {
     String p3_deal_cost;
     String p3_price;
 
+    public String getSource_() {
+        return source_;
+    }
+
+    public void setSource_(String source_) {
+        this.source_ = source_;
+    }
+
+    String source_;
+
     public String getS18_name() {
         return s18_name;
     }
@@ -166,20 +179,24 @@ public class Tisr_non_market {
                            String p3_deal_cost,
                            String p3_price,
                            String client_id,
-    String s18_name) {
+                           String s18_name,
+                           String source_,
+                           String bin) {
 
-        this.rn=rn;
-                this.order_date =order_date;
-                this.order_n =order_n;
-                this.p3_emitent_name_str =p3_emitent_name_str;
-                this.p3_nsin =p3_nsin;
-                this.prod_code =prod_code;
-                this.pokup_code =pokup_code;
-                this.p3_volume =p3_volume;
-                this.p3_deal_cost =p3_deal_cost;
-                this.p3_price =p3_price;
-        this.client_id =client_id;
-        this.s18_name=s18_name;
+        this.rn = rn;
+        this.order_date = order_date;
+        this.order_n = order_n;
+        this.p3_emitent_name_str = p3_emitent_name_str;
+        this.p3_nsin = p3_nsin;
+        this.prod_code = prod_code;
+        this.pokup_code = pokup_code;
+        this.p3_volume = p3_volume;
+        this.p3_deal_cost = p3_deal_cost;
+        this.p3_price = p3_price;
+        this.client_id = client_id;
+        this.s18_name = s18_name;
+        this.source_ = source_;
+        this.bin=bin;
 
     }
 
