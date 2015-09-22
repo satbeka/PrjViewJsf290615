@@ -56,8 +56,87 @@
         };
     </script>
 
+    <script type="text/javascript">
+
+        function checkDateNa(event){
+
+            var dtNa=document.getElementById("j_idt8:button_input").value;
+            var dtC =document.getElementById("j_idt8:button2_input").value;
+            var dtPO =document.getElementById("j_idt8:button3_input").value;
+
+            //alert(dtNa+" "+dtNa.length);
+            //alert(dtC+" "+dtC.length);
+            //alert(dtPO+" "+dtPO.length);
+            //alert("event="+event.type);
+            if (dtNa.length>4) {
+                if(dtC.length>4){
+                    alert("Уточните параметры отчета. т.к. Поле С_ непустое="+dtC);
+                    dtC="";
+                    document.getElementById("j_idt8:button2_input").value="";
+                }
+                if(dtPO.length>4){
+                    alert("Уточните параметры отчета. т.к. Поле ПО_ непустое="+dtPO);
+                    dtPO="";
+                    document.getElementById("j_idt8:button3_input").value="";
+                }
+
+                document.getElementById("j_idt8:submitButton2").disabled = true;
+                //id="submitButton2"
+                document.getElementById("j_idt8:submitButton").disabled = false;
+            }
 
 
+            //if (dtNa.length&lt;4) {
+              //  document.getElementById("j_idt8:submitButton2").disabled = false;
+            //}
+
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function checkDateC(){
+            var dtNa=document.getElementById("j_idt8:button_input").value;
+            var dtC =document.getElementById("j_idt8:button2_input").value;
+            var dtPO =document.getElementById("j_idt8:button3_input").value;
+
+            if (dtC.length>4) {
+                if(dtNa.length>4){
+                    alert("Уточните параметры отчета. т.к. Поле НА_ непустое="+dtNa);
+                    document.getElementById("j_idt8:button_input").value="";
+                    document.getElementById("j_idt8:submitButton").disabled = true;
+                    document.getElementById("j_idt8:submitButton2").disabled = false;
+
+                }
+            }
+
+
+
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function checkDatePO(){
+
+            var dtNa=document.getElementById("j_idt8:button_input").value;
+            var dtC =document.getElementById("j_idt8:button2_input").value;
+            var dtPO =document.getElementById("j_idt8:button3_input").value;
+
+            //alert(dtNa+" "+dtNa.length);
+            //alert(dtC+" "+dtC.length);
+            //alert(dtPO+" "+dtPO.length);
+            if (dtPO.length>4) {
+                if(dtNa.length>4){
+                    alert("Уточните параметры отчета. т.к. Поле НА_ непустое="+dtNa);
+                    document.getElementById("j_idt8:button_input").value="";
+                    document.getElementById("j_idt8:submitButton").disabled = true;
+                    document.getElementById("j_idt8:submitButton2").disabled = false;
+                }
+            }
+
+        }
+    </script>
 
 </h:head>
 <h:body>
@@ -106,8 +185,10 @@
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
-                            widgetVar="mycal2"
-                            onchange="PrimeFaces.info('Selected date from p:calendar');"
+
+                            onblur="checkDateNa(event)"
+
+
                         />
 
 
@@ -136,6 +217,9 @@
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
+
+                            onblur="checkDateC()"
+
                         />
 
                 <p:outputLabel for="button" value=" по  " styleClass="indLabOD2"/>
@@ -143,6 +227,9 @@
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
+
+                            onblur="checkDatePO()"
+
                         />
 
                 <p:commandButton id="submitButton2" value="Получить информацию " update="@form"
