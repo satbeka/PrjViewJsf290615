@@ -392,9 +392,9 @@ public class UserData implements Serializable {
                 tisr_non_market.setS18_name(rs.getString(12));
 
                 if (rs.getString(14).contains("ЕРЦБ")) {
-                    tisr_non_market.setSource_("учетная система ЕРЦБ");
+                    tisr_non_market.setSource_("учетная система Единого регистратора");
                 } else {
-                    tisr_non_market.setSource_("учетная система ЦДЦБ");
+                    tisr_non_market.setSource_("учетная система Центрального депозитария");
                 }
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));
@@ -660,9 +660,9 @@ public class UserData implements Serializable {
                 tisr_non_market.setProd_code(getRusCod(rs.getString(6)));
                 tisr_non_market.setS18_name(rs.getString(12));
                 if (rs.getString(14).contains("ЕРЦБ")) {
-                    tisr_non_market.setSource_("учетная система ЕРЦБ");
+                    tisr_non_market.setSource_("учетная система Единого регистратора");
                 } else {
-                    tisr_non_market.setSource_("учетная система ЦДЦБ");
+                    tisr_non_market.setSource_("учетная система Центрального депозитария");
                 }
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));

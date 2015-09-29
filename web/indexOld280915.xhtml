@@ -144,7 +144,6 @@
 
     <f:facet name="last">
         <h:outputStylesheet library="default" name="css/index.css" />
-        <h:outputStylesheet library="default" name="css/new1.css" />
     </f:facet>
 
 
@@ -179,7 +178,7 @@
 
 
 
-            <h:panelGrid columns="2" styleClass="indBodyTitleOD">
+            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD">
 
                 <p:outputLabel for="button" value=" По состоянию на " styleClass="indLabOD"/>
                 <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
@@ -204,34 +203,33 @@
 
             </h:panelGrid>
 
-
-    <p:outputLabel value="или" styleClass="indLblOr"/>
-
-
-
-
-            <h:panelGrid columns="1" styleClass="indBodyTitleOD2">
+<h:panelGrid>
+    <h:outputLabel>или</h:outputLabel>
+</h:panelGrid>
 
 
-                <p:outputLabel for="button" value="  с  " styleClass="indLabOD21"/>
+
+            <h:panelGrid columns="2" cellpadding="4" styleClass="indBodyTitleOD2">
+
+
+                <p:outputLabel for="button" value="  с  " styleClass="indLabOD2"/>
                 <p:calendar locale="ru" id="button2" value="#{calendarView2.date1}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
 
                             onblur="checkDateC()"
-                            styleClass="indCalOD21"
 
                         />
 
-                <p:outputLabel for="button" value=" по  " styleClass="indLabOD22"/>
+                <p:outputLabel for="button" value=" по  " styleClass="indLabOD2"/>
                 <p:calendar locale="ru" id="button3" value="#{calendarView2.date10}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
 
                             onblur="checkDatePO()"
-                            styleClass="indCalOD22"
+
                         />
 
                 <p:commandButton id="submitButton2" value="Получить информацию " update="@form"
@@ -268,7 +266,7 @@
 
 
 
-        <div id="inf_period" style="#{userData.display_inf_cnt}" class="indInfPeriod">
+        <div id="inf_period" style="#{userData.display_inf_cnt}" >
             <h:outputText value=" Информация предоставлена по итогам #{userData.display_inf_period}" styleClass="indInfNotTitle">
             </h:outputText>
 
@@ -281,12 +279,7 @@
 
         </div>
 
-        <div id="inf_cntEmpty" >
-            <h:outputText value="  " >
-            </h:outputText>
-        </div>
-
-        <div id="inf_cnt" style="#{userData.display_inf_cnt}" class="indCnt">
+        <div id="inf_cnt" style="#{userData.display_inf_cnt}">
              <h:outputText value=" выбрано #{userData.tisr_non_markets.size()} записей " styleClass="indInfNotTitle">
              </h:outputText>
         </div>

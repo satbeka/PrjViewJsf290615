@@ -228,6 +228,10 @@ line-height: 18px;
     font-family: Times New Roman,sans-serif!important;
     font-size: 15px!important;
 
-    height: 300px !important;
-    width: 1100px !important;
+    /*height: 200px !important;*/
+    /*width: 1100px !important;*/
+}
+
+.indNinCenter{
+    text-align: center!important;
 }

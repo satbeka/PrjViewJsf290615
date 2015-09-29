@@ -1,5 +1,9 @@
 /** Add css rules here for your application. */
 
+.indDatatable {
+    table-layout: auto!important;
+}
+
 .ui-state-default{
 vertical-align: middle!important;
 border-left: 1px solid rgb(238, 238, 238)!important;
@@ -9,7 +13,7 @@ outline: 0px none!important;
 cursor: default!important;
 padding: 0px!important;
 overflow: hidden!important;
-rgb(249, 249, 249)!important;
+color: rgb(249, 249, 249)!important;
 background: rgb(249, 249, 249)!important;
 height: auto!important;
 }
@@ -106,35 +110,8 @@ line-height: 18px;
     line-height: 18px;
 }
 
-.indBodyTitleOD2
-{
 
-    width:500px;
-    height:90px;
-    font-weight: bold;
-    text-align: justify;
-    font-family: Times New Roman,sans-serif!important;
-    font-size: 13px;
-    line-height: 18px;
 
-    /*position: relative!important;*/
-    float: right!important;
-
-    width: 470px!important;
-    /*bottom: 40px!important;*/ /* Положение от нижнего края */
-    /*right: 15px;*/ /* Положение от правого края */
-    left: 512px!important;
-}
-
-.indInfNotTitle{
-
-    font-size: medium!important;
-    font-weight: bold!important;
-    text-align: center!important;
-    font-family: Times New Roman,sans-serif!important;
-    line-height: 18px!important;
-
-}
 
 .indInfNot{
 
@@ -165,10 +142,6 @@ line-height: 18px;
     color: rgb(2, 126, 197);
 }
 
-.indPag {
-    font-size: 13px!important;
-    font-family: Times New Roman,sans-serif!important;
-}
 
 .indTblBody {
 
@@ -213,7 +186,7 @@ line-height: 18px;
 }
 
 .indTblBodyEmit {
-    text-align: left;!important;
+    text-align: left!important;
     font-family: Times New Roman,sans-serif!important;
     font-size: 13px;
     line-height: 18px;
@@ -279,23 +252,10 @@ line-height: 18px;
     position: relative!important;
     float: right!important;
 
-    width: 170px!important;
+    width: 120px!important;
     bottom: 4px!important; /* Положение от нижнего края */
     /*right: 15px;*/ /* Положение от правого края */
     left: 5px!important;
-
-}
-
-.indLabOD2 {
-    /*width: 150px!important;*/
-
-    /*position: relative!important;*/
-    float: right!important;
-
-    width: 50px!important;
-    bottom: 40px!important; /* Положение от нижнего края */
-    /*right: 15px;*/ /* Положение от правого края */
-    /*left: 500px!important;*/
 
 }
 
@@ -310,15 +270,7 @@ line-height: 18px;
     float: right!important;
 }
 
-.indButnOD2 {
-    width: 190px!important;
-    position: relative!important;
 
-    bottom: 10px; /* Положение от нижнего края */
-    /*right: 15px;*/ /* Положение от правого края */
-    left: 200px;
-    float: right!important;
-}
 
 .indTwoFrame {
     width: 1024px!important;
@@ -479,3 +431,13 @@ line-height: 18px;
     background: url("#{resource['default/img/th_bg.png']}") repeat-x scroll center bottom rgb(234, 234, 234);
     border: 1px solid rgb(238, 238, 238);
 }
+
+.indPag {
+    font-size: 13px!important;
+    font-family: Times New Roman,sans-serif!important;
+}
+
+.ui-datatable table
+{border-collapse: collapse!important;
+width: 100%!important;
+table-layout: auto!important;}

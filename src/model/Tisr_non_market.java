@@ -59,7 +59,9 @@ public class Tisr_non_market {
         //System.out.println(yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec);
 
         //this.order_date = yyyy+"."+mm+"."+dd+" "+hh+":"+mi+":"+sec; //090915
-        this.order_date = yyyy + "." + mm + "." + dd;
+        //this.order_date = yyyy + "." + mm + "." + dd; //220915
+        this.order_date = dd + "." + mm + "." + yyyy;
+
     }
 
     public String getOrder_n() {

@@ -1,0 +1,101 @@
+.indLblOr{
+    /*width: 190px!important;*/
+    position: absolute!important;
+    font-weight: bold!important;
+    font-size: 15px!important;
+    top: 240px!important; /* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 550px;
+    /*float: right!important;*/
+
+}
+
+.indBodyTitleOD2
+{
+
+    height:90px!important;
+    font-weight: bold!important;
+    text-align: justify!important;
+    font-family: Times New Roman,sans-serif!important;
+    font-size: 13px;
+    line-height: 18px;
+
+
+}
+
+.indLabOD21 {
+    /*width: 150px!important;*/
+
+    position: absolute!important;
+
+    width: 50px!important;
+    top: 241px!important; /* Положение от нижнего края */
+    left: 730px!important;
+    /*left: 500px!important;*/
+
+}
+
+.indLabOD22 {
+    /*width: 150px!important;*/
+
+    position: absolute!important;
+
+    width: 50px!important;
+    top: 241px!important; /* Положение от нижнего края */
+    /*right: 15px!important;*/ /* Положение от правого края */
+    left: 960px!important;
+
+}
+
+.indCalOD21 {
+    /*width: 150px!important;*/
+
+    position: absolute!important;
+
+    /*width: 50px!important;*/
+    top: 241px!important; /* Положение от нижнего края */
+    left: 750px!important;
+    /*left: 500px!important;*/
+
+}
+
+.indCalOD22 {
+    /*width: 150px!important;*/
+
+    position: absolute!important;
+
+    /*width: 50px!important;*/
+    top: 241px!important; /* Положение от нижнего края */
+    /*right: 15px!important;*/ /* Положение от правого края */
+    left: 980px!important;
+
+}
+
+.indButnOD2 {
+    width: 190px!important;
+    position: relative!important;
+
+    /*bottom: 10px; *//* Положение от нижнего края */
+    /*right: 15px;*/ /* Положение от правого края */
+    left: 200px;
+    /*float: right!important;*/
+}
+
+.indInfNotTitle{
+
+    font-size: medium!important;
+    font-weight: bold!important;
+    text-align: center!important;
+    font-family: Times New Roman,sans-serif!important;
+    line-height: 18px!important;
+
+}
+
+.indInfPeriod{
+    position: relative!important;
+    left: 500px!important;
+}
+
+.indCnt{
+    margin-top: 50px!important;
+}

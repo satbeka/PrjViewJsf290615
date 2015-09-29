@@ -152,15 +152,20 @@ public class DFView {
                 "t.b1_num_emission,\n" +
                 "report.volofplacedsecurities(t.b1_client, sysdate, '"+p3_nsin+"'),\n" +
                 "report.volofdeclaredsecurities(t.b1_client, sysdate, '"+p3_nsin+"'),\n" +
-                "t.b1_date_end_emission-t.b1_date_reg_emission,t.b1_as_type\n" +
-                " from D_B1_ASSETS t where t.b1_nin='"+p3_nsin+"'";
+                "t.b1_date_end_emission-t.b1_date_reg_emission,t.b1_as_type,\n" +
+                "d25.a1_cl_fullname, \n" +
+                "t.b1_date_reg_emission, \n" +
+                "t.b1_date_end_emission \n" +
+                " from D_B1_ASSETS t " +
+                "LEFT JOIN  ercb.d_a1_clients d25 on t.b1_client = d25.a1_id \n"+
+                "where t.b1_nin='"+p3_nsin+"'";
 
         Driver myDriver = new oracle.jdbc.driver.OracleDriver();
         String uRL = OracleDB.getSystemDb();
         String uSER = OracleDB.getDbUsername();
         String pASS = OracleDB.getDbPwd();
 
-
+        System.out.println("Sqlsel="+Sqlsel);
         try {
             DriverManager.registerDriver(myDriver);
 
@@ -183,9 +188,17 @@ public class DFView {
                 nin.setVolofdeclaredsecurities(UserData.getFrmtNumb(nmb));
                 nin.setSrok(rs.getString(5));
                 //System.out.println("rs.getString(6)="+rs.getString(6));
-                if (!rs.getString(6).contains("03"))
-                {nin.setSrok(null);};
                 this.selectedNIN=nin;
+                this.selectedNIN.setA1_cl_fullname(rs.getString(7));
+
+                if (!rs.getString(6).contains("03"))
+                {nin.setSrok(null);
+                }else {
+                    this.selectedNIN.setB1_date_reg_emissionO(rs.getDate(8));
+                    this.selectedNIN.setB1_date_end_emission(rs.getDate(9));
+                };
+                System.out.println("rs.getString(7)=" + rs.getString(7));
+
 
 
             };

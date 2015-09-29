@@ -18,8 +18,12 @@
     <li value="#{dfView.viewNINCustomized(dfView.nin)}"></li>
     <p:panelGrid columns="2" styleClass="indNin">
 
+        <h:outputText value="Полное наименование Эмитента:"/>
+        <h:outputText value="#{dfView.selectedNIN.a1_cl_fullname}" styleClass="indNin"/>
+
         <h:outputText value="Национальный идентификационный номер ЦБ:"/>
         <h:outputText value="#{dfView.nin}" styleClass="indNin"/>
+
 
         <h:outputText value="Дата регистрации выпуска ЦБ:" styleClass="indNin"/>
         <h:outputText value="#{dfView.selectedNIN.b1_date_reg_emission}" styleClass="indNin"/>
@@ -33,9 +37,11 @@
         <h:outputText value="Количество размещенных ценных бумаг, в шт." styleClass="indNin"/>
         <h:outputText value="#{dfView.selectedNIN.volofplacedsecurities}" styleClass="indNin"/>
 
-        <h:outputText value="Срок обращения облигаций (для облигаций), в днях" styleClass="indNin"/>
-        <h:outputText value="#{dfView.selectedNIN.srok}" styleClass="indNin"/>
+        <h:outputText value="Дата начала обращения (для облигаций)" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.b1_date_reg_emissionO}" styleClass="indNin"/>
 
+        <h:outputText value="Дата окончания обращения (для облигаций)" styleClass="indNin"/>
+        <h:outputText value="#{dfView.selectedNIN.b1_date_end_emission}" styleClass="indNin"/>
 
     </p:panelGrid>
 
