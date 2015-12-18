@@ -11,9 +11,9 @@ border-right: 1px solid rgb(208, 208, 208)!important;
 -moz-user-focus: normal!important;
 outline: 0px none!important;
 cursor: default!important;
-padding: 0px!important;
+/*padding: 0px!important;*/
 overflow: hidden!important;
-color: rgb(249, 249, 249)!important;
+/*color: rgb(249, 249, 249)!important;*/
 background: rgb(249, 249, 249)!important;
 height: auto!important;
 }
@@ -274,7 +274,7 @@ line-height: 18px;
 
 .indTwoFrame {
     width: 1024px!important;
-    height: 210px!important;
+    height: 5px!important;
     /*position: relative!important;*/
 }
 

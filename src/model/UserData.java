@@ -1,6 +1,11 @@
 package model;
 
 import common.OracleDB;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.BuiltinFormats;
+import org.primefaces.component.growl.Growl;
+import org.primefaces.model.LazyDataModel;
 import server.ApplicationThread;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +27,10 @@ public class UserData implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public void reset() {
+        tisr_non_markets =null;
+    }
+
     public String getDisplay() {
         return display;
     }
@@ -39,6 +48,17 @@ public class UserData implements Serializable {
     public void setDisplay_inf_not(String display_inf_not) {
         this.display_inf_not = display_inf_not;
     }
+
+
+    public String getDisplay_err1() {
+        return display_err1;
+    }
+
+    public void setDisplay_err1(String display_err1) {
+        this.display_err1 = display_err1;
+    }
+
+    private String display_err1 = "display:none";
 
     private String display_inf_not = "display:none";
 
@@ -62,11 +82,40 @@ public class UserData implements Serializable {
 
     private String display_inf_cnt = "display:none";
 
+    public String getDisplay_inf_first() {
+        return display_inf_first;
+    }
+
+    public void setDisplay_inf_first(String display_inf_first) {
+        this.display_inf_first = display_inf_first;
+    }
+
+    public String getDisplay_inf_not_first() {
+        return display_inf_not_first;
+    }
+
+    public void setDisplay_inf_not_first(String display_inf_not_first) {
+        this.display_inf_not_first = display_inf_not_first;
+    }
+
+    private String display_inf_first="";
+    private String display_inf_not_first="display:none";
+
     public List<Tisr_non_market> getTisr_non_markets() {
         return tisr_non_markets;
     }
 
     private List<Tisr_non_market> tisr_non_markets;
+
+    public Tisr_non_market getSelectedTisr_non_market() {
+        return selectedTisr_non_market;
+    }
+
+    public void setSelectedTisr_non_market(Tisr_non_market selectedTisr_non_market) {
+        this.selectedTisr_non_market = selectedTisr_non_market;
+    }
+
+    private Tisr_non_market selectedTisr_non_market;
 
     public String getDisplay_inf_od() {
         return display_inf_od;
@@ -76,7 +125,7 @@ public class UserData implements Serializable {
         this.display_inf_od = display_inf_od;
     }
 
-    private String display_inf_od = " на последний Операционный день ";
+    private String display_inf_od = " на последний операционный день ";
 
     public String getDisplay_inf_last_od() {
         return display_inf_last_od;
@@ -86,7 +135,7 @@ public class UserData implements Serializable {
         this.display_inf_last_od = display_inf_last_od;
     }
 
-    private String display_inf_last_od = " на последний Операционный день ";
+    private String display_inf_last_od = " на последний операционный день ";
 
     public String getDisplay_inf_period() {
         return display_inf_period;
@@ -96,7 +145,13 @@ public class UserData implements Serializable {
         this.display_inf_period = display_inf_period;
     }
 
+    public LazyDataModel<Tisr_non_market> getLazyModel() {
+        return lazyModel;
+    }
+
     private String display_inf_period = "-";
+
+    private LazyDataModel<Tisr_non_market> lazyModel;
 
     @PostConstruct
     public void init() {
@@ -110,10 +165,13 @@ public class UserData implements Serializable {
                 ) {
             this.display = "";
             this.display_inf_not = "display:none";
+            this.display_err1 = "display:none";
+
             this.display_inf_cnt = "";
         } else {
             this.display = "display:none";
             this.display_inf_not = "";
+            this.display_err1 = "display:none";
             this.display_inf_cnt = "display:none";
         }
         ;
@@ -122,9 +180,10 @@ public class UserData implements Serializable {
         //System.out.println(" dt1 this.display_inf_not=" + this.display_inf_not);
         //System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
-        this.display_inf_od = " на последний незавершенный Операционный день ";
+        this.display_inf_od = " на последний незавершенный операционный день ";
         if (lastInfOD.getStatus() == 3) {
-            this.display_inf_od = " на последний завершенный Операционный день ";
+            this.display_inf_od = " на последний завершенный операционный день ";
+            this.display_inf_period=display_inf_od;
         }
 
 
@@ -137,11 +196,39 @@ public class UserData implements Serializable {
 
         //ApplicationThread.init();
 
+        lazyModel = new LazyTisr_non_marketDataModel(tisr_non_markets);
+
 
     }
 
-    public void upd(Date dt1, Date dt2) {
+    public void upd(Date dt1, Date dt2,int err) {
         //System.out.println("dt1="+dt1);
+        System.out.println("err 1 2="+err);
+        if (err==1){
+            this.display = "display:none";
+            this.display_inf_not = "";
+            this.display_inf_cnt = "display:none";
+            return;
+        }
+
+
+        this.display_err1 = "display:none";
+        this.display = "display:none";
+        this.display_inf_cnt = "display:none";
+        this.display_inf_not = "display:none";
+
+        if (dt1!=null&dt2!=null) {
+            if (dt1.after(dt2)) {
+                this.display_err1 = "";
+                return;
+            }
+        }
+
+        if (dt1==null|dt2==null) {
+                this.display_err1 = "";
+                return;
+        }
+
         this.tisr_non_markets = getView(dt1, dt2);
         System.out.println("dt1 dt2 this.tisr_non_markets.size()=" + this.tisr_non_markets.size());
         if (this.tisr_non_markets.size() != 0
@@ -175,11 +262,23 @@ public class UserData implements Serializable {
         display_inf_period = display_inf_period + " по " + dtF.format(dt2);
         //System.out.println(" display_inf_period2 ==" + display_inf_period);
         //dt1Str = dtF.format(dt1);
+        display_inf_first = "display:none";
+        display_inf_not_first = "";
+
+        lazyModel = new LazyTisr_non_marketDataModel(tisr_non_markets);
 
     }
 
-    public void upd(Date dt1) {
+    public void upd(Date dt1,int err) {
         //System.out.println("dt1="+dt1);
+        System.out.println("err="+err);
+        if (err==1){
+            this.display = "display:none";
+            this.display_inf_not = "";
+            this.display_inf_cnt = "display:none";
+            return;
+        }
+
         this.tisr_non_markets = getView(dt1);
         System.out.println("dt1 this.tisr_non_markets.size()=" + this.tisr_non_markets.size());
         if (this.tisr_non_markets.size() != 0
@@ -201,9 +300,9 @@ public class UserData implements Serializable {
         //System.out.println(" dt1 this.display_inf_not=" + this.display_inf_not);
         //System.out.println(" dt1 this.display_inf_cnt=" + this.display_inf_cnt);
 
-        this.display_inf_od = " на незавершенный Операционный день ";
+        this.display_inf_od = " на незавершенный операционный день ";
         if (getinfOD(dt1) == 3) {
-            this.display_inf_od = " на завершенный Операционный день ";
+            this.display_inf_od = " на завершенный операционный день ";
         }
 
         //System.out.println("dt1 this.display_inf_od=" + this.display_inf_od);
@@ -213,7 +312,8 @@ public class UserData implements Serializable {
         display_inf_period = display_inf_od + "  " + dtF.format(dt1);
         //System.out.println(" display_inf_period==" + display_inf_period);
         //dt1Str = dtF.format(dt1);
-
+        display_inf_first = "display:none";
+        display_inf_not_first = "";
 
     }
 
@@ -300,7 +400,8 @@ public class UserData implements Serializable {
         System.out.println("222 dt1Str=" + dt1Str);
         //Date dt2 = new Date();
         //dt2.setTime(dt1.getTime() + 1 * 24 * 60 * 60 * 1000);
-        dt2Str = dtF.format(dt2);
+        //dt2.setTime(dt2.getTime() + 1 * 24 * 60 * 60 * 1000);
+        dt2Str = dtF.format(dt2.getTime() + 1 * 24 * 60 * 60 * 1000);
 
         System.out.println("dt2str=" + dt2Str);
 
@@ -319,7 +420,7 @@ public class UserData implements Serializable {
                 "RN,ORDER_DATE,order_n,\n" +
                 "p3_emitent_name_str,p3_nsin,PROD_CODE,POKUP_CODE,\n" +
                 "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3),Source_\n" +
-                "\n" +
+
                 " from TISR_NON_MARKET" +
                 " where order_date >= to_date('" + dt1Str + "','dd/MM/yyyy HH24:mi') " +
                 " and order_date<=to_date('" + dt2Str + "','dd/MM/yyyy HH24:mi')" +
@@ -398,6 +499,7 @@ public class UserData implements Serializable {
                 }
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));
+
 
                 listTisr_non_market.add(tisr_non_market);
 
@@ -588,6 +690,7 @@ public class UserData implements Serializable {
                 "RN,ORDER_DATE,order_n,\n" +
                 "p3_emitent_name_str,p3_nsin,PROD_CODE,POKUP_CODE,\n" +
                 "P3_VOLUME,P3_DEAL_COST,P3_PRICE,client_id,s18_name,substr(bin1,3),source_\n" +
+
                 "\n" +
                 " from TISR_NON_MARKET" +
                 " where order_date >= to_date('" + dt1Str + "','dd/MM/yyyy HH24:mi') " +
@@ -667,6 +770,8 @@ public class UserData implements Serializable {
                 k++;
                 tisr_non_market.setRn(UserData.getFrmtNumb(k));
 
+
+
                 listTisr_non_market.add(tisr_non_market);
 
             }
@@ -715,5 +820,50 @@ public class UserData implements Serializable {
         SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
         return dt1.format(new Date());
     }
+
+
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        HSSFRow header = sheet.getRow(0);
+
+        HSSFCellStyle cellStyle = wb.createCellStyle();
+        cellStyle.setFillForegroundColor(HSSFColor.CORAL.index);
+        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+        /*
+        HSSFCellStyle cellNumbStyle = wb.createCellStyle();
+        cellNumbStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+*/
+
+
+        System.out.println("postProcessXLS=" + cellStyle.getBorderRight());
+        System.out.println("header.getPhysicalNumberOfCells()=" + header.getPhysicalNumberOfCells());
+
+        for(int i=0; i < header.getPhysicalNumberOfCells();i++) {
+            HSSFCell cell = header.getCell(i);
+
+            sheet.autoSizeColumn(i);
+            if ((i>=70)&(i<=100)){
+
+                 HSSFCellStyle cellNumbStyle = wb.createCellStyle();
+                 //cellNumbStyle.setAlignment(HSSFCellStyle.ALIGN_RIGHT);
+                 //cellNumbStyle.setDataFormat(HSSFDataFormat.getBuiltinFormat(3));
+                 cellNumbStyle.setDataFormat(wb.createDataFormat().getFormat(BuiltinFormats.getBuiltinFormat(3)));
+                //cellNumbStyle.setDataFormat(wb.createDataFormat().getFormat(BuiltinFormats.getBuiltinFormat(3)));
+                cell.setCellStyle(cellNumbStyle);
+                System.out.println("   8-10=" + cell.getCellStyle().getAlignment());
+
+            }
+
+            else {
+                cell.setCellStyle(cellStyle);
+                System.out.println("  i=" + cell.getCellStyle().getAlignment());
+
+
+            }
+        }
+    }
+
 
 }

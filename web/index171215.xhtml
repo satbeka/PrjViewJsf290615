@@ -192,15 +192,15 @@
 
 
 
-            <p:dataTable id="tisr_non_marketTable" value="#{userData.lazyModel}" var="tisr_non_market"
+            <p:dataTable id="tblN" value="#{userData.tisr_non_markets}" var="tisr_non_market"
                          style="#{userData.display}" styleClass="indPag"
                          rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="10,20,30"
                          currentPageReportTemplate="{startRecord} - {endRecord} из {totalRecords}"
+                         rendered="#{not empty userData.tisr_non_markets}"
 
-                         lazy="true"
                     >
 
 
@@ -214,9 +214,8 @@
 
 
 
-                <p:column styleClass="indTblBodyEmit" sortBy="#{tisr_non_market.p3_emitent_name_str}"
-                          filterBy="#{tisr_non_market.p3_emitent_name_str}"
-                          filterMatchMode="contains"  >
+                <p:column filterBy="#{tisr_non_market.p3_emitent_name_str}"
+                          filterMatchMode="contains"  styleClass="indTblBodyEmit" sortBy="#{tisr_non_market.p3_emitent_name_str}">
                     <f:facet name="header">
                         <h:outputText value="Наименование эмитента" styleClass="indTblHead"/>
                     </f:facet>
@@ -231,9 +230,8 @@
 
                 </p:column>
 
-                <p:column sortBy="#{tisr_non_market.bin}"
-                          filterBy="#{tisr_non_market.bin}"
-                          filterMatchMode="contains">
+                <p:column filterBy="#{tisr_non_market.bin}"
+                          filterMatchMode="contains" sortBy="#{tisr_non_market.bin}">
                     <f:facet name="header">
                         <h:outputText value=" БИН эмитента" styleClass="indTblHead"/>
                     </f:facet>

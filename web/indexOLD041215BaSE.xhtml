@@ -56,7 +56,87 @@
         };
     </script>
 
+    <script type="text/javascript">
 
+        function checkDateNa(event){
+
+            var dtNa=document.getElementById("j_idt9:button_input").value;
+            var dtC =document.getElementById("j_idt9:button2_input").value;
+            var dtPO =document.getElementById("j_idt9:button3_input").value;
+
+            //alert(dtNa+" "+dtNa.length);
+            //alert(dtC+" "+dtC.length);
+            //alert(dtPO+" "+dtPO.length);
+            //alert("event="+event.type);
+            if (dtNa.length>4) {
+                if(dtC.length>4){
+                    alert("Необходимо выбрать или дату или период! т.к. Поле С_ непустое="+dtC);
+                    dtC="";
+                    document.getElementById("j_idt9:button2_input").value="";
+                }
+                if(dtPO.length>4){
+                    alert("Необходимо выбрать или дату или период! т.к. Поле ПО_ непустое="+dtPO);
+                    dtPO="";
+                    document.getElementById("j_idt9:button3_input").value="";
+                }
+
+                document.getElementById("j_idt9:submitButton2").disabled = false;
+                //id="submitButton2"
+                document.getElementById("j_idt9:submitButton").disabled = false;
+            }
+
+
+            //if (dtNa.length&lt;4) {
+              //  document.getElementById("j_idt8:submitButton2").disabled = false;
+            //}
+
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function checkDateC(){
+            var dtNa=document.getElementById("j_idt9:button_input").value;
+            var dtC =document.getElementById("j_idt9:button2_input").value;
+            var dtPO =document.getElementById("j_idt9:button3_input").value;
+
+            if (dtC.length>4) {
+                if(dtNa.length>4){
+                    alert("Необходимо выбрать или дату или период! т.к. Поле НА_ непустое="+dtNa);
+                    document.getElementById("j_idt9:button_input").value="";
+                    document.getElementById("j_idt9:submitButton").disabled = false;
+                    document.getElementById("j_idt9:submitButton2").disabled = false;
+
+                }
+            }
+
+
+
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function checkDatePO(){
+
+            var dtNa=document.getElementById("j_idt9:button_input").value;
+            var dtC =document.getElementById("j_idt9:button2_input").value;
+            var dtPO =document.getElementById("j_idt9:button3_input").value;
+
+            //alert(dtNa+" "+dtNa.length);
+            //alert(dtC+" "+dtC.length);
+            //alert(dtPO+" "+dtPO.length);
+            if (dtPO.length>4) {
+                if(dtNa.length>4){
+                    alert("Необходимо выбрать или дату или период! т.к. Поле НА_ непустое="+dtNa);
+                    document.getElementById("j_idt9:button_input").value="";
+                    document.getElementById("j_idt9:submitButton").disabled = false;
+                    document.getElementById("j_idt9:submitButton2").disabled = false;
+                }
+            }
+
+        }
+    </script>
 
 </h:head>
 <h:body>
@@ -99,34 +179,68 @@
 
 
 
+            <h:panelGrid columns="2" styleClass="indBodyTitleOD">
+
+                <p:outputLabel for="button" value=" По состоянию на " styleClass="indLabOD"/>
+                <p:calendar locale="ru" id="button" value="#{calendarView.date10}"
+                            showOn="button"
+                            navigator="true"
+                            pattern="dd/MM/yyyy"
+                            onchange="checkDateNa(event)"
+                            onclick="checkDateNa(event)"
+
+                        >
+
+                </p:calendar>
+
+
+
+                <p:commandButton id="submitButton" value="Получить информацию " update="@form"
+                                 actionListener="#{growlView.addMessage1(calendarView.date10,calendarView2.date1,calendarView2.date10)}"
+                                 action="#{userData.upd(calendarView.date10,growlView.err)}"
+
+                                 onclick="showImage()" oncomplete="hideImage()"
+                                 styleClass="indButnOD"
+                        />
+
+
+
+            </h:panelGrid>
+
+
+    <p:outputLabel value="или" styleClass="indLblOr"/>
+
+
+
+
             <h:panelGrid columns="1" styleClass="indBodyTitleOD2">
 
 
-                <p:outputLabel for="button2" value="  с  " styleClass="indLabOD21"/>
+                <p:outputLabel for="button" value="  с  " styleClass="indLabOD21"/>
                 <p:calendar locale="ru" id="button2" value="#{calendarView2.date1}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
 
+                            onchange="checkDateC()"
+                            onclick="checkDateC()"
                             styleClass="indCalOD21"
-                        >
 
-                </p:calendar>
+                        />
 
-                <p:outputLabel for="button3" value=" по  " styleClass="indLabOD22"/>
+                <p:outputLabel for="button" value=" по  " styleClass="indLabOD22"/>
                 <p:calendar locale="ru" id="button3" value="#{calendarView2.date10}"
                             showOn="button"
                             navigator="true"
                             pattern="dd/MM/yyyy"
 
+                            onchange="checkDatePO()"
+                            onclick="checkDatePO()"
                             styleClass="indCalOD22"
-                        >
-
-
-                </p:calendar>
+                        />
 
                 <p:commandButton id="submitButton2" value="Получить информацию " update="@form"
-
+                                 actionListener="#{growlView.addMessage2(calendarView.date10,calendarView2.date1,calendarView2.date10)}"
                                  action="#{userData.upd(calendarView2.date1,calendarView2.date10,growlView.err)}"
                                  onclick="showImage()" oncomplete="hideImage()"
                                  styleClass="indButnOD2"
@@ -147,6 +261,19 @@
 
 
 
+            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+                    <h:outputText value="Button:" />
+                    <h:outputText value="#{calendarView.date3}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+
+                </p:panelGrid>
+            </p:dialog>
+
+
+
         <div id="inf_period" style="#{userData.display_inf_cnt}" class="indInfPeriod">
             <h:outputText value=" Информация предоставлена по итогам #{userData.display_inf_period}" styleClass="indInfNotTitle"
                                 style="#{userData.display_inf_not_first}">
@@ -158,14 +285,6 @@
 
 
         </div>
-
-
-        <div id="err1" style="#{userData.display_err1}" >
-            <h:outputText value="Некорректно указан период " styleClass="indInfNot">
-            </h:outputText>
-
-        </div>
-
 
 
         <div id="inf_not" style="#{userData.display_inf_not}" >
@@ -187,21 +306,13 @@
 
         <h:commandLink  id="excel">
             <p:graphicImage library="default" name="img/xls.png" title="Экспортировать в Excel"/>
-            <p:dataExporter type="xls" target="tblN" fileName="exportXLS" postProcessor="#{userData.postProcessXLS}"/>
+            <p:dataExporter type="xls" target="tblN" fileName="exportXLS"/>
         </h:commandLink>
 
-
-
-            <p:dataTable id="tisr_non_marketTable" value="#{userData.lazyModel}" var="tisr_non_market"
+            <p:dataTable id="tblN" value="#{userData.tisr_non_markets}" var="tisr_non_market"
                          style="#{userData.display}" styleClass="indPag"
-                         rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="10,20,30"
-                         currentPageReportTemplate="{startRecord} - {endRecord} из {totalRecords}"
 
-                         lazy="true"
-                    >
+                         paginator="true">
 
 
 
@@ -214,9 +325,8 @@
 
 
 
-                <p:column styleClass="indTblBodyEmit" sortBy="#{tisr_non_market.p3_emitent_name_str}"
-                          filterBy="#{tisr_non_market.p3_emitent_name_str}"
-                          filterMatchMode="contains"  >
+                <p:column sortBy="#{tisr_non_market.p3_emitent_name_str}" filterBy="#{tisr_non_market.p3_emitent_name_str}"
+                          filterMatchMode="contains"  styleClass="indTblBodyEmit">
                     <f:facet name="header">
                         <h:outputText value="Наименование эмитента" styleClass="indTblHead"/>
                     </f:facet>
@@ -231,8 +341,7 @@
 
                 </p:column>
 
-                <p:column sortBy="#{tisr_non_market.bin}"
-                          filterBy="#{tisr_non_market.bin}"
+                <p:column sortBy="#{tisr_non_market.bin}" filterBy="#{tisr_non_market.bin}"
                           filterMatchMode="contains">
                     <f:facet name="header">
                         <h:outputText value=" БИН эмитента" styleClass="indTblHead"/>

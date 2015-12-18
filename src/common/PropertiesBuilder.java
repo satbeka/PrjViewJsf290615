@@ -16,7 +16,7 @@ public class PropertiesBuilder {
     //static final String GLOBAL_CFG_XML = "all_structure.xml";
     public static Properties _prop = new Properties();
     static String GLOBAL_CFG_PATH = ""
-           + "D:\\Tomcat 7.0\\test\\"
+           + "C:\\bv\\Tomcat 7.0\\"
             ;
 
     private static void loadProperties() {

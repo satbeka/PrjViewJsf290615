@@ -5,11 +5,13 @@ import org.primefaces.event.SelectEvent;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@ManagedBean
+@ManagedBean(name = "calendarView2", eager = true)
 public class CalendarView2 {
 
     private Date date1;
@@ -24,11 +26,51 @@ public class CalendarView2 {
     private Date date10;
     private Date date11;
 
+    public String getDisplay_err_not() {
+        return display_err_not;
+    }
+
+    public void setDisplay_err_not(String display_err_not) {
+        this.display_err_not = display_err_not;
+    }
+
+    private String display_err_not = "display:none";
+
+    public void onDateErr(Date dt1,Date dt10) {
+        int err1=0;
+        System.out.println("this.date1="+dt1);
+        System.out.println("this.date10="+dt10);
+
+        if ((dt1!=null)&(dt10!=null)) {
+            if (dt10.before(dt1)) {
+                err1 = 1;
+                this.display_err_not = "";
+            } ;
+        }
+        System.out.println("this.display_err_not="+this.display_err_not);
+
+        //facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
 
     public void onDateSelect(SelectEvent event) {
+        int err1=0;
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+        System.out.println("onDateSelect=" + event.getObject());
+
+        //CalendarView2 calendarView2 = (CalendarView2)((UIOutput)event.getSource()).getValue();
+        System.out.println("this.date1="+date1);
+        System.out.println("this.date10="+this.date10);
+
+        if ((this.date1!=null)&(this.date10!=null)) {
+            if (this.date10.before(this.date1)) {
+                err1 = 1;
+                this.display_err_not = "";
+            } ;
+        }
+        System.out.println("this.display_err_not="+this.display_err_not);
+
+        //facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
     public void click() {
@@ -44,6 +86,7 @@ public class CalendarView2 {
 
     public void setDate1(Date date1) {
         this.date1 = date1;
+        System.out.println("setDate1="+date1);
     }
 
     public Date getDate2() {
@@ -116,6 +159,7 @@ public class CalendarView2 {
 
     public void setDate10(Date date10) {
         this.date10 = date10;
+        System.out.println("setdt10   setDate1="+date1);
     }
 
     public Date getDate11() {

@@ -140,6 +140,34 @@ public class Tisr_non_market {
     String p3_deal_cost;
     String p3_price;
 
+    public String getP3_own_fullname() {
+        return p3_own_fullname;
+    }
+
+    public void setP3_own_fullname(String p3_own_fullname) {
+        this.p3_own_fullname = p3_own_fullname;
+    }
+
+    public String getP3_ca_fullname() {
+        return p3_ca_fullname;
+    }
+
+    public void setP3_ca_fullname(String p3_ca_fullname) {
+        this.p3_ca_fullname = p3_ca_fullname;
+    }
+
+    public String getP3_order_n() {
+        return p3_order_n;
+    }
+
+    public void setP3_order_n(String p3_order_n) {
+        this.p3_order_n = p3_order_n;
+    }
+
+    private String p3_own_fullname;  // 201115 bbb
+    private String p3_ca_fullname;  // 201115 bbb
+    private String p3_order_n;  // 201115 bbb
+
     public String getSource_() {
         return source_;
     }

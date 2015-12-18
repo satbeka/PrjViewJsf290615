@@ -7,7 +7,7 @@
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
         <webroots>
-          <root url="file://$MODULE_DIR$/web" relative="/" />
+          <root url="file://$MODULE_DIR$/web" relative="\" />
         </webroots>
       </configuration>
     </facet>
@@ -19,13 +19,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.59" level="application_server_libraries" />
-    <orderEntry type="library" name="Mojarra-2.2.1" level="project" />
-    <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Mojarra-2.2.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="PrimeFaces-5.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="ojdbc6-11.2.0.2.0" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" scope="PROVIDED">
       <library name="Maven: com.oracle:ojdbc:14">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/ojdbc6-11.2.0.2.0.jar!/" />
@@ -34,13 +34,14 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.2" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.0.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.servlet.jsp:jsp-api:2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.2" level="project" />
-    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.10.1" level="project" />
-    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.primefaces:primefaces:5.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:jsp-api:2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-api:2.2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sun.faces:jsf-impl:2.2.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.poi:poi:3.10.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: commons-codec:commons-codec:1.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="primefaces-5.2-sources" level="project" />
   </component>
 </module>
