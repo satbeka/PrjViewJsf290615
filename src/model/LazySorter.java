@@ -76,7 +76,7 @@ public class LazySorter implements Comparator<Tisr_non_market>  {
 
     public int compare(Tisr_non_market tisr_non_market1, Tisr_non_market tisr_non_market2) {
         try {
-            String str="";
+            String str=" ";
 
             Object value1 = LazySorter.getValue(this.sortField,tisr_non_market1);
             System.out.println(" value1.toString()="+value1.toString());
