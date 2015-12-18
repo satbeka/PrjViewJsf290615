@@ -62,6 +62,13 @@ public class LazySorter implements Comparator<Tisr_non_market>  {
 
             fieldValue= String.valueOf(tisr_non_market.getP3_price());
         }
+        if ( filterProperty.equals("order_date")
+                ) {
+
+            fieldValue= String.valueOf(tisr_non_market.getOrder_date());
+        }
+
+
 
         return fieldValue;
     }
