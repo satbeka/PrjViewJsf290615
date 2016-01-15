@@ -152,7 +152,7 @@
                                 style="#{userData.display_inf_not_first}">
             </h:outputText>
 
-            <h:outputText value=" Если не выбрана дата или период, то информация предоставляется за последний завершенный операционный день"
+            <h:outputText value=" Если не выбран период, то информация предоставляется за последний завершенный операционный день"
                           styleClass="indInfNotTitle" style="#{userData.display_inf_first}">
             </h:outputText>
 
@@ -169,7 +169,7 @@
 
 
         <div id="inf_not" style="#{userData.display_inf_not}" >
-            <h:outputText value="Информация на указанную дату/период отсутствует " styleClass="indInfNot">
+            <h:outputText value="Информация на указанный период отсутствует " styleClass="indInfNot">
             </h:outputText>
 
         </div>
@@ -295,18 +295,18 @@
                     </h:outputText>
                 </p:column>
 
-                <p:column sortBy="#{tisr_non_market.p3_price}" styleClass="indTblBodyNum">
+                <p:column sortBy="#{tisr_non_market.p3_price}" styleClass="indTblBodyStm">
                     <f:facet name="header">
-                        <h:outputText value="Стоимость за одну ценную бумагу в сделке, тенге" styleClass="indTblHead"/>
+                        <h:outputText value="Стоимость за одну ценную бумагу в сделке, тенге" styleClass="indTblHeadStm"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_price}" styleClass="indTblBodyNum"/>
+                    <h:outputText value="#{tisr_non_market.p3_price}" styleClass="indTblBodyStm"/>
                 </p:column>
 
-                <p:column sortBy="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum">
+                <p:column sortBy="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyVolume">
                     <f:facet name="header">
-                        <h:outputText value="Объем сделки, тенге" styleClass="indTblHead"/>
+                        <h:outputText value="Объем сделки, тенге" styleClass="indTblHeadStm"/>
                     </f:facet>
-                    <h:outputText value="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyNum"/>
+                    <h:outputText value="#{tisr_non_market.p3_deal_cost}" styleClass="indTblBodyVolume"/>
                 </p:column>
 
 

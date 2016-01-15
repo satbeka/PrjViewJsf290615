@@ -101,3 +101,21 @@
 .indCnt{
     margin-top: 2px!important;
 }
+
+.indTblBodyStm {
+
+    width: 100px!important;
+    text-align: right;
+}
+
+.indTblBodyVolume {
+
+    width: 120px!important;
+    text-align: right;
+
+}
+
+.indTblHeadStm {
+    text-align: center;
+}
+

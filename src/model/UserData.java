@@ -12,6 +12,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.*;
@@ -267,6 +269,8 @@ public class UserData implements Serializable {
 
         lazyModel = new LazyTisr_non_marketDataModel(tisr_non_markets);
 
+        getIp(dt1,dt2,tisr_non_markets.size());
+
     }
 
     public void upd(Date dt1,int err) {
@@ -345,18 +349,31 @@ public class UserData implements Serializable {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
         //decimalFormat.setGroupingSize(3);
         symbols.setGroupingSeparator(' ');
-        String pattern = "###,###.00";
+        String pattern = "###,##0.00#####";
         DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
         //System.out.println("getfmt dec  Dcml nmber="+nmber);
+
         if (nmber == null) {
             return null;
         }
         String number = decimalFormat.format(nmber);
 
-        //System.out.println("Dcml number="+number);
+        System.out.println("Dcml number="+number);
         return number;
     }
 
+    public static String getFrmtDecimalAll(BigDecimal nmber) {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        //decimalFormat.setGroupingSize(3);
+        symbols.setGroupingSeparator(' ');
+        String pattern = "#,##0.######";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+//System.out.println("decim nmber="+nmber);
+
+        String number = decimalFormat.format(nmber);
+//System.out.println("decim getfmtnumb number="+number);
+        return number;
+    }
 
     public static String getRusCod(String engCod) {
         //System.out.println("engCod="+engCod);
@@ -368,7 +385,7 @@ public class UserData implements Serializable {
             return "Физ.лицо (резидент РК)";
         }
         if (engCod.contains("JURNN")) {
-            return "Юр.лицо       \"+\"\\n\"+\" (нерезидент)";
+            return "Юр.лицо    "+"\n"+" (нерезидент)";
         }
         if (engCod.contains("FIZNN")) {
             return "Физ.лицо (нерезидент)";
@@ -486,7 +503,17 @@ public class UserData implements Serializable {
 
                 nmb = rs.getLong(8);
                 tisr_non_market.setP3_volume(UserData.getFrmtLong(nmb));
+                if (tisr_non_market.getP3_nsin().contains("PF")){
+                    BigDecimal dcmlP3_volume;
 
+                    dcmlP3_volume = rs.getBigDecimal(8);
+
+                    //DecimalFormat df = new DecimalFormat("#,##0");
+                    //System.out.println(df.format(dcmlP3_volume));
+                    tisr_non_market.setP3_volume(UserData.getFrmtDecimalAll(dcmlP3_volume));
+
+                    //tisr_non_market.setP3_volume(dcmlP3_volume.toEngineeringString());
+                }
 
                 tisr_non_market.setPokup_code(getRusCod(rs.getString(7)));
                 tisr_non_market.setProd_code(getRusCod(rs.getString(6)));
@@ -750,13 +777,25 @@ public class UserData implements Serializable {
                 tisr_non_market.setP3_price(UserData.getFrmtNumb(nmb));
                 */
                 dcml = rs.getBigDecimal(10);
-                System.out.println(" select dcml=" + dcml);
+                //System.out.println(" select dcml=" + dcml);
                 tisr_non_market.setP3_price(UserData.getFrmtDcml(dcml));
 
                 Integer nmb;
 
                 nmb = rs.getInt(8);
                 tisr_non_market.setP3_volume(UserData.getFrmtNumb(nmb));
+
+                if (tisr_non_market.getP3_nsin().contains("PF")){
+                    BigDecimal dcmlP3_volume;
+
+                    dcmlP3_volume = rs.getBigDecimal(8);
+
+                    //DecimalFormat df = new DecimalFormat("#,##0");
+                    //System.out.println(df.format(dcmlP3_volume));
+                    tisr_non_market.setP3_volume(UserData.getFrmtDecimalAll(dcmlP3_volume));
+
+                    //tisr_non_market.setP3_volume(dcmlP3_volume.toEngineeringString());
+                }
 
 
                 tisr_non_market.setPokup_code(getRusCod(rs.getString(7)));
@@ -795,6 +834,69 @@ public class UserData implements Serializable {
         //System.out.println(listTisr_non_market);
 
         return listTisr_non_market;
+
+    }
+
+
+    private static void getIp(Date dt1, Date dt2, int size) {
+
+
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String ipAddress = request.getRemoteAddr();
+        System.out.println("ipAddress="+ipAddress);
+        if (ipAddress == null) {
+            ipAddress = request.getHeader("X-FORWARDED-FOR");
+        }
+
+        System.out.println("2222 ipAddress="+ipAddress);
+        System.out.println("dt1="+dt1.toString());
+        System.out.println("size="+size);
+
+
+        String SqlINS = "insert into " +
+                "tisr_non_market_log(con_ip,dt1,dt2,con_amount)\n" +
+                "values(?,?,?,?)";
+
+
+        System.out.println("SqlINS=" + SqlINS);
+
+        Driver myDriver = new oracle.jdbc.driver.OracleDriver();
+        String uRL = OracleDB.getSystemDb();
+        String uSER = OracleDB.getDbUsername();
+        String pASS = OracleDB.getDbPwd();
+
+        try {
+            DriverManager.registerDriver(myDriver);
+
+            Connection conn = DriverManager.getConnection(uRL, uSER, pASS);
+
+            PreparedStatement pS = conn.prepareStatement(SqlINS);
+            pS.setString(1,ipAddress);
+            pS.setDate(2, new java.sql.Date(dt1.getTime()));
+            pS.setDate(3, new java.sql.Date(dt2.getTime()));
+            pS.setInt(4, size);
+
+            pS.executeUpdate();
+            System.out.println("   User SqlINS.executeQ().......");
+            conn.commit();
+
+            if (pS != null) {
+                pS.close();
+            }
+
+            if (conn != null) {
+                conn.close();
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("-----SqlINS log------");
+        //System.out.println(listTisr_non_market);
+
+        return ;
 
     }
 

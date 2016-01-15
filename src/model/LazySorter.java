@@ -1,6 +1,14 @@
 package model;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.Locale;
+
 import org.primefaces.model.SortOrder;
 public class LazySorter implements Comparator<Tisr_non_market>  {
 
@@ -67,7 +75,11 @@ public class LazySorter implements Comparator<Tisr_non_market>  {
 
             fieldValue= String.valueOf(tisr_non_market.getOrder_date());
         }
+        if ( filterProperty.equals("p3_deal_cost")
+                ) {
 
+            fieldValue= String.valueOf(tisr_non_market.getP3_deal_cost());
+        }
 
 
         return fieldValue;
@@ -90,6 +102,36 @@ public class LazySorter implements Comparator<Tisr_non_market>  {
             */
 
             int value = ((Comparable)value1).compareTo(value2);
+            if (sortField.equals("order_date")) {
+
+                SimpleDateFormat dtF = new SimpleDateFormat("dd.MM.yyyy");
+                Date dtValue1=dtF.parse(value1.toString());
+                Date dtValue2=dtF.parse(value2.toString());
+                value=dtValue1.compareTo(dtValue2);
+            }
+
+            //p3_volume
+            if (sortField.equals("p3_volume")
+                    ||sortField.equals("p3_price")
+                    ||sortField.equals("p3_deal_cost")
+                    ) {
+
+                DecimalFormat df = (DecimalFormat) NumberFormat.getInstance(Locale.ENGLISH);
+                df.setParseBigDecimal(true);
+                if (value1==null|value1.toString().equals("null")|value1.toString().equals("")){
+
+                    value1=value1.toString().replaceAll("null","")+"0";}
+                if (value2==null|value2.toString().equals("null")|value2.toString().equals("")){
+
+                    value2=value2.toString().replaceAll("null","")+"0";}
+
+                BigDecimal dblValue1 = (BigDecimal) df.parseObject(value1.toString().replaceAll(" ", ""));
+
+                BigDecimal dblValue2 = (BigDecimal) df.parseObject(value2.toString().replaceAll(" ", ""));
+                value=dblValue1.compareTo(dblValue2);
+
+            }
+
 
             return SortOrder.ASCENDING.equals(sortOrder) ? value : -1 * value;
         }
